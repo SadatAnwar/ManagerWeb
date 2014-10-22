@@ -13,7 +13,8 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
-
+.svn
+logs
 # =========================
 # Operating System Files
 # =========================
@@ -38,6 +39,8 @@ Icon
 # Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop
+.svn
+logs
 Network Trash Folder
 Temporary Items
 .apdisk
