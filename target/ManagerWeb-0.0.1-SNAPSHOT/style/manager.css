@@ -1,0 +1,283 @@
+body {
+	background-color: black;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color: rgb(199, 202, 204);
+	font-size: 1em;
+	height: 100%;
+}
+
+a {
+	color: rgb(199, 202, 204);
+	text-decoration: none;
+	background: rgb(0, 52, 107);
+}
+
+a:HOVER {
+	color: rgb(199, 202, 204);
+	text-decoration: underline;
+	background: rgb(0, 90, 148);
+}
+
+#mainMenu {
+	width: 100%;
+	height: 100%;
+}
+
+#mainMenu a,#homeLink a,#powerControls a,.mainLink a,#scenariosLink a {
+	display: table-cell;
+	width: 100%;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 3em;
+	float: left;
+}
+
+#mainMenu #modeLink {
+	display: table-cell;
+	width: 50%;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 3em;
+	float: left;
+}
+
+.playScenarioLink {
+	height: 4em !important;
+	width: 10em !important;
+	vertical-align: middle;
+	display: table-cell;
+}
+
+#homeLink,#dcControls,#restart,#shutdown,#scenariosLink,.mainLink {
+	width: 100%;
+}
+
+#homeLink a,#scenariosLink a,.mainLink a {
+	font-size: 2em;
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+
+#powerControls a {
+	font-size: 2.5em;
+	padding-top: 1.5%;
+	padding-bottom: 1.5%;
+}
+
+#powerStatus,#message {
+	width: 100%;
+	font-size: 2em;
+	text-align: center;
+}
+
+#dcControls a {
+	width: calc(100%/ 4);
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 2em;
+	float: left;
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+
+#xmlEditor input[type="submit"], #fileuploadForm input, #configuration input[type="button"] {
+	width: 100%;
+	padding-top: 1%;
+	padding-bottom: 1%;
+	float: left;
+	font-size: 2em;
+	background: rgb(0, 52, 107);
+	border: none;
+	color: rgb(199, 202, 204);
+	cursor: pointer;
+}
+
+#pptuploadForm input{
+	padding-top: 1%;
+	padding-bottom: 1%;
+	font-size: 2em;
+	background: rgb(0, 52, 107);
+	border: none;
+	color: rgb(199, 202, 204);
+	cursor: pointer;
+}
+
+#xml {
+	position: relative;
+	width: 80%;
+	height: 50em;
+	visibility: hidden;
+}
+
+#editor {
+	position: absolute;
+	width: 80%;
+	height: 50em;
+}
+
+#xmlEditor input[type="submit"]:HOVER, #configuration input[type="button"]:HOVER {
+	background: rgb(0, 90, 148);
+}
+
+#deleteForm input[type="submit"] {
+	width: 100%;
+	padding-top: 1%;
+	padding-bottom: 1%;
+	float: left;
+	font-size: 2em;
+	background: rgb(0, 52, 107);
+	border: none;
+	color: rgb(199, 202, 204);
+	cursor: pointer;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+#deleteForm input[type="submit"]:HOVER {
+	background: rgb(0, 90, 148);
+}
+
+#scenariosList {
+	width: 50%;
+	overflow: auto;
+	list-style-type: none;
+	font-size: 2em;
+}
+
+#scenariosList li {
+	margin-bottom: 30px;
+}
+
+#scenariosList a {
+	width: 20%;
+	height: 1.2em;
+	text-align: center;
+	overflow: hidden;
+}
+
+#scenariosList .tags {
+	font-size: 0.8em;
+}
+
+#scenariosList .id {
+	font-size: 0.5em;
+}
+
+.tag {
+	background-color: rgb(23, 156, 125);
+}
+
+#scenariosList .tags .tag {
+	display: inline-block;
+	width: 8em !important;
+	padding: 5px;
+	margin-top: 10px;
+}
+
+#tags a {
+	font-size: 1.7em;
+	text-align: center;
+	display: inline-block;
+	width: 20%;
+	margin: 5px;
+}
+
+#scenesList {
+	list-style-type: none;
+	font-size: 2em;
+	width: 80%;
+	overflow: auto;
+}
+
+#scenesList a {
+	font-size: 0.8em;
+	display: inline-block;
+	width: 15%;
+	height: 2em;
+	text-align: center;
+	line-height: 2em;
+	margin: 5px;
+}
+
+.sceneContents, .sceneContents a {
+	font-size: 0.7em !important;
+}
+
+.sceneContents a {
+	width: 4% !important;
+}
+
+td {
+	vertical-align: top;
+}
+
+span.error {
+	background-color: rgb(119, 28, 44);
+}
+
+span.message {
+	background-color: rgb(23, 156, 125);
+}
+
+#text {
+	height: 135px;
+	width: 500px;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 2em;
+	background: rgb(0, 52, 107);
+	color: rgb(199, 202, 204);
+	background: rgb(0, 52, 107);
+}
+
+#wallSelector td {
+	text-align: center;
+	vertical-align: middle;
+}
+
+#wallSelector td a {
+	border: none;
+	display: table-cell;
+	width: 8em;
+	height: 4.5em;
+	vertical-align: middle;
+	text-decoration: none;
+}
+
+.screenFull a {
+	background: rgb(199,202,204);
+	color: black;
+}
+
+.screenEmpty a {
+	background: rgb(0, 90, 148);
+	
+}
+
+.screenSelected a {
+	background: rgb(253,195,0);
+	color: 	black;
+}
+
+.date {
+	font-size: 0.7em;
+}
+
+.showSceneLink, .showSceneLink img {
+	display: table-cell !important;
+	width: 268px !important;
+	height: 135px !important;
+	vertical-align: middle;
+}
+
+.stateOff {
+	color: rgb(74, 79, 81);
+	}
+	
+td a {
+	width:100%;
+	display:block;
+	}

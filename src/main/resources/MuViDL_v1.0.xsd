@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2013 sp1 (x64) (http://www.altova.com) von Fraunhofer IAO (Fraunhofer IAO) bearbeitet -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="screenType">
+		<xs:sequence>
+			<xs:element name="id" type="screenIDType"/>
+			<xs:choice>
+				<xs:element name="url" type="xs:anyURI"/>
+				<xs:element name="text" type="textType"/>
+				<xs:element name="image" type="imageType"/>
+				<xs:element name="video" type="videoType"/>
+				<xs:element name="animatedtext">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="text" type="textType"/>
+							<xs:element name="image" type="imageType"/>
+						</xs:sequence>
+						<xs:attribute name="speed" type="xs:int"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="sceneType">
+		<xs:sequence>
+			<xs:element name="screen" type="screenType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="largeimage" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="url" type="xs:anyURI"/>
+						<xs:element name="displayarea" type="displayAreaType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="largevideo" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="video" type="videoType"/>
+						<xs:element name="displayarea" type="displayAreaType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="searchresults" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="query" type="xs:string"/>
+						<xs:element name="searchscreen" type="screenIDType" minOccurs="0"/>
+						<xs:element name="displayarea" type="displayAreaType" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="type" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Google"/>
+								<xs:enumeration value="GoogleImages"/>
+								<xs:enumeration value="Amazon"/>
+								<xs:enumeration value="WebMiningCockpit"/>
+								<xs:enumeration value="PRSearch"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string"/>
+		<xs:attribute name="description" type="xs:string" use="optional"/>
+		<xs:attribute name="tags" type="xs:string" use="optional"/>
+		<xs:attribute name="date" type="xs:dateTime"/>
+		<xs:attribute name="id" type="xs:integer" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="scenarioType">
+		<xs:sequence>
+			<xs:element name="scene" type="sceneType" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string"/>
+		<xs:attribute name="description" type="xs:string" use="optional"/>
+		<xs:attribute name="tags" type="xs:string" use="optional"/>
+		<xs:attribute name="date" type="xs:dateTime"/>
+		<xs:attribute name="id" type="xs:integer" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="displayAreaType">
+		<xs:choice>
+			<xs:element name="rectangle">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="start" type="screenIDType"/>
+						<xs:element name="height" type="xs:int"/>
+						<xs:element name="width" type="xs:int"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="list" type="xs:string"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="screenIDType">
+		<xs:attribute name="id" type="xs:int" use="optional"/>
+		<xs:attribute name="column" type="xs:int" use="optional"/>
+		<xs:attribute name="row" type="xs:int" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="videoType">
+		<xs:sequence>
+			<xs:element name="url" type="xs:anyURI"/>
+			<xs:element name="starttime" type="xs:time" minOccurs="0"/>
+			<xs:element name="stoptime" type="xs:time" minOccurs="0"/>
+			<xs:element name="autostart" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="loop" type="xs:boolean" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="muvi">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="scenario" type="scenarioType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="scene" type="sceneType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="screen" type="screenType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="imageType">
+		<xs:sequence>
+			<xs:element name="url" type="xs:anyURI"/>
+			<xs:element name="scale" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="fullscreen"/>
+						<xs:enumeration value="original"/>
+						<xs:enumeration value="repeat"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="textType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="style" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>

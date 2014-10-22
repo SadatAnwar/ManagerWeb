@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:websocket="http://www.springframework.org/schema/websocket"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd 
+		http://www.springframework.org/schema/websocket
+        http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+  
+
+    <bean id="upgradeStrategy" class="org.springframework.web.socket.server.jetty.JettyRequestUpgradeStrategy">
+        <constructor-arg ref="serverFactory"/>
+    </bean>
+
+    <bean id="serverFactory" class="org.eclipse.jetty.websocket.server.WebSocketServerFactory">
+        <constructor-arg>
+            <bean class="org.eclipse.jetty.websocket.api.WebSocketPolicy">
+                <constructor-arg value="SERVER"/>
+                <property name="inputBufferSize" value="8092"/>
+                <property name="idleTimeout" value="600000"/>
+            </bean>
+        </constructor-arg>
+    </bean>    
+  
+   <context:annotation-config />
+       
+
+    <!-- Configurer that replaces ${...} place holders with values from a properties file. The name of 
+        the file comes from the system property "monitoringConfig". The value may be 'file:C:/monitoring.properties' 
+        or 'classpath:monitoring.properties'. -->
+    <bean class="de.fraunhofer.iao.muvi.managerweb.utils.IaoPropertyPlaceholderConfigurer">
+        <property name="location"
+            value="#{systemProperties['monitoringConfig'] == null ? 'classpath:manager.properties' : systemProperties['monitoringConfig']}" />
+        <property name="placeholderPrefix" value="${" />
+    </bean>
+    <!-- Local config. Place holder §{...}. -->
+    <bean class="de.fraunhofer.iao.muvi.managerweb.utils.IaoPropertyPlaceholderConfigurer">
+        <property name="location"
+            value="#{systemProperties['localConfig'] == null ? 'classpath:local-system.properties' : systemProperties['localConfig']}" />
+        <property name="placeholderPrefix" value="§{" />
+    </bean>
+
+
+    <!-- Database -->
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="§{jdbc.driverClassName}" />
+        <property name="url" value="§{jdbc.url}" />
+        <property name="username" value="§{jdbc.username}" />
+        <property name="password" value="§{jdbc.password}" />
+        <property name="connectionProperties" value="generateSimpleParameterMetadata=true" />
+        <property name="validationQuery" value="select 1" />
+    </bean>
+
+    <bean id="database" class="de.fraunhofer.iao.muvi.managerweb.backend.Database">
+        <property name="dataSource" ref="dataSource" />
+    </bean>    
+    
+
+    
+    <bean id="muViState" class="de.fraunhofer.iao.muvi.managerweb.logic.MuViState">
+    	<property name="database" ref="database" />
+    </bean>    	
+   
+	<bean id="dcManager" class="de.fraunhofer.iao.muvi.managerweb.logic.DisplayComputerManager" init-method="init">
+		<property name="database" ref="database" />
+		<property name="muViState" ref="muViState" />	
+    </bean>        
+    
+    <bean id="websocketWindowFacade" class="de.fraunhofer.iao.muvi.managerweb.logic.WebsocketWindowFacade" init-method="init">
+    </bean>
+    
+
+
+    <bean id="chromeServiceWindowFacade" class="de.fraunhofer.iao.muvi.managerweb.logic.ChromeServiceWindowFacade">
+        <property name="database" ref="database" />
+        <property name="dcManager" ref="dcManager" />
+    </bean>
+    
+    <bean id="screenHandler" class="de.fraunhofer.iao.muvi.managerweb.logic.ScreenHandler" init-method="init">
+    	<property name="websocketFacade" ref="websocketWindowFacade" />
+    	<property name="chromeServiceFacade" ref="chromeServiceWindowFacade" />
+    	<property name="database" ref="database" />
+    	<property name="muViState" ref="muViState" />    	
+    </bean>        
+    
+ 
+    <bean id="showURLOnScreen" class="de.fraunhofer.iao.muvi.managerweb.logic.ShowURLOnScreen">
+    	<property name="database" ref="database" />
+    	<property name="showTextOnScreen" ref="showTextOnScreen" />
+    	<property name="muViState" ref="muViState" />	
+		<property name="dcManager" ref="dcManager" />
+		<property name="screenHandler" ref="screenHandler" />
+    </bean>
+    
+    
+    <bean id="iPower" class="de.fraunhofer.iao.muvi.managerweb.power.StartStop" init-method="init">
+   		<property name="database" ref="database" />
+    </bean>
+    
+ 
+    
+    <bean id="MuViScreenshot" class="de.fraunhofer.iao.muvi.managerweb.logic.MuViScreenshot">
+    	<property name="dcManager" ref="dcManager" />
+    </bean>
+    
+     <bean id="powerController" class="de.fraunhofer.iao.muvi.managerweb.web.PowerController">
+    	 <property name="iPower" ref="iPower" />
+    	 <property name="dcManager" ref="dcManager" />
+    	 <property name="screenHandler" ref="screenHandler" />
+    </bean>
+    
+    <bean id="showTextOnScreen" class="de.fraunhofer.iao.muvi.managerweb.logic.ShowTextOnScreen">
+    	<property name="database" ref="database" />
+    	<property name="showURLOnScreen" ref="showURLOnScreen" />
+    </bean>
+    
+    <bean id="showImageOnScreen" class="de.fraunhofer.iao.muvi.managerweb.logic.ShowImageOnScreen">
+    	<property name="database" ref="database" />
+    	<property name="showURLOnScreen" ref="showURLOnScreen" />
+    </bean>
+    
+    <bean id="showLargeImage" class="de.fraunhofer.iao.muvi.managerweb.logic.ShowLargeImage">
+    	<property name="database" ref="database" />
+    	<property name="showURLOnScreen" ref="showURLOnScreen" />
+    </bean>
+    
+    <bean id="showLargeVideo" class="de.fraunhofer.iao.muvi.managerweb.logic.ShowLargeVideo">
+        <property name="database" ref="database" />
+    	<property name="showURLOnScreen" ref="showURLOnScreen" />
+    </bean>
+
+    <bean id="httpSender" class="de.fraunhofer.iao.muvi.managerweb.utils.HttpSender">
+    </bean>
+   
+        
+    <bean id="showSearchResults" class="de.fraunhofer.iao.muvi.managerweb.logic.ShowSearchResults">
+    	<property name="showURLOnScreen" ref="showURLOnScreen" />
+    	<property name="showTextOnScreen" ref="showTextOnScreen" />
+    	<property name="httpSender" ref="httpSender" />
+    </bean>
+        
+    <bean id="showMuVi" class="de.fraunhofer.iao.muvi.managerweb.logic.ShowMuVi">
+       	<property name="showURLOnScreen" ref="showURLOnScreen" />
+       	<property name="showTextOnScreen" ref="showTextOnScreen" />
+       	<property name="showImageOnScreen" ref="showImageOnScreen" />
+       	<property name="showLargeImage" ref="showLargeImage" />
+       	<property name="showLargeVideo" ref="showLargeVideo" />
+       	<property name="showSearchResults" ref="showSearchResults" />
+    </bean>
+    
+    <bean id="configurationController" class="de.fraunhofer.iao.muvi.managerweb.web.ConfigurationController">
+    	<property name="database" ref="database" />
+    	<property name="dcManager" ref="dcManager" />
+    	<property name="screenHandler" ref="screenHandler" />
+    	<property name="showTextOnScreen" ref="showTextOnScreen" />
+    </bean>
+    
+    <bean id="xmlController" class="de.fraunhofer.iao.muvi.managerweb.web.XMLController">
+    	<property name="showMuVi" ref="showMuVi" />
+    	<property name="database" ref="database" />
+    </bean>
+    
+    <bean id="scenariosController" class="de.fraunhofer.iao.muvi.managerweb.web.ScenariosController">
+    	<property name="database" ref="database" />
+    	<property name="showMuVi" ref="showMuVi" />
+    	<property name="MuViScreenshot" ref="MuViScreenshot" />
+    </bean>
+    
+     <bean id="presentationController" class="de.fraunhofer.iao.muvi.managerweb.web.PresentationController">
+    	<property name="database" ref="database" />
+    </bean>
+    
+    <bean id="sceneController" class="de.fraunhofer.iao.muvi.managerweb.web.SceneController">
+    	<property name="database" ref="database" />
+    	<property name="showMuVi" ref="showMuVi" />
+    </bean>
+    
+    <bean id="imageController" class="de.fraunhofer.iao.muvi.managerweb.web.ImageController">
+    	<property name="database" ref="database" />
+    	<property name="showMuVi" ref="showMuVi" />
+    </bean>
+    
+    <bean id="simpleURLController" class="de.fraunhofer.iao.muvi.managerweb.web.SimpleURLController">
+    	<property name="database" ref="database" />
+    	<property name="showMuVi" ref="showMuVi" />
+    </bean>
+
+    <bean id="textController" class="de.fraunhofer.iao.muvi.managerweb.web.TextController">
+    	<property name="database" ref="database" />
+    	<property name="showMuVi" ref="showMuVi" />
+    </bean>    
+ 
+    <bean id="searchResultsController" class="de.fraunhofer.iao.muvi.managerweb.web.SearchResultsController">
+    	<property name="database" ref="database" />
+    	<property name="showMuVi" ref="showMuVi" />
+    </bean> 
+    
+    <bean id="muViStateController" class="de.fraunhofer.iao.muvi.managerweb.web.MuViStateController">
+    	<property name="muViState" ref="muViState" />
+    </bean>
+    
+    <bean id="startPageController" class="de.fraunhofer.iao.muvi.managerweb.web.StartPageController">
+    	<property name="database" ref="database" />    	
+    	<property name="dcManager" ref="dcManager" />
+    </bean>
+    
+	<bean id="websocketController" class="de.fraunhofer.iao.muvi.managerweb.web.WebsocketController">
+	    <property name="database" ref="database" />	
+    </bean>
+</beans>
+

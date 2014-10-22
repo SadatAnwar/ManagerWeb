@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width; initial-scale=1.0;" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="style/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="style/manager.css">
+<link href="style/carousel.css" rel="stylesheet">
+<link href="style/font-awesome/css/font-awesome.css" rel="stylesheet">   
+<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+<style type="text/css">
+p {
+   font-size: 20px !important;
+}
+    .row {
+ margin-right: 0px; 
+ margin-left: 0px; 
+}
+    a:HOVER {
+	color: rgb(199, 202, 204);
+	text-decoration: underline;
+	background: rgb(0, 90, 148);
+}
+</style>
+        
+<div class="container">
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header" >
+          <a class="navbar-brand" href="index.jsp" title="Click to go Home">MuVi Home</a>
+        </div>
+    </div>
+    </div>
+<p>&nbsp;</p>
+    
+    <div class="row">
+    <div class="collapse-group">
+        <a class="col-md-12 col-lg-12 col-sm-12 col-xs-12 btn" style="padding: 20px; font-size:2em" href="#">Powering on MuVi &raquo;</a>
+        <div class="collapse"  ><p>In order to start a presentation on the cloudwall you should first make sure it is swtiched on and functioning properly. Access the power page <a href="../manager/powerStatus.do"  target="_blank"> here</a> (will open link in new tab)</p>
+        <br><p class ="text-center">Follow the instruction and you wont get lost! :)</p>
+            <p>
+            1. Make sure the screens are switched on: look at the <i class="icon-screen "></i> button, if its <span class="text-danger">red</span> click on the button and wait for the screens to turn on, you will see the numbers from 1 to 8 light up. When the button is <span class="text-success">green</span> you can move to the next step.
+            </p><br>
+            <p>
+                2. Once the displays have been powered up, you will want to turn on the computers. Look at the <i class="icon-switch"></i> button, if its <span class="text-success">green</span> you are in luck, the computers are already powered up, move on to the next step. <br> If the <i class="icon-switch"></i> button is <span class="text-danger">red</span> or <span class="text-warning">yellow</span> then you will have to power on the computers, be careful, this can get a little tricky! Click the <i class="icon-switch"></i> button, and wait a few seconds, if it turns <span class="text-success">green</span> you are done, if it is still the same, you will now have to manually power on the computers from the Rechnerraum, dont worry you did not break it, this happens from time to time. 
+            </p><br>
+            <p>
+                3. If you did not have to power on the computers, then you will have to restart them, to make sure they are properly adjusted to all the displays, do this by clicking the <i class=" icon-spinner"></i>, once you have clicked it, the button should go <span class="text-danger">red</span> now you will have to wait till this becomes <span class="text-success">green</span> again, now all the computers are ready. If you have followed all the steps properly you will see the MuVi logo on the well. Congratulations, you are done, now you can do awesomeness.
+            </p>
+            </div>
+    </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="collapse-group" >
+        <a class="col-md-12 col-lg-12 col-sm-12 col-xs-12 btn" style="padding: 20px; font-size:2em" href="#">Powering off MuVi? &raquo;</a>
+          <div class="collapse " ><p>Powering off is not as complicated as powering on!! Access the power page <a href="../manager/powerStatus.do"  target="_blank"> here</a> (will open link in new tab)</p>
+        <br>
+            <p>
+           1. After you are done with your presentation, use the "Power off computers" link below to turnoff the display computers.
+            </p><br>
+            <p>
+                2. Once you see the computers shutting down, you can click on the <i class="icon-screen "></i> button, it will take a few seconds and will then turn-off all the displays.
+            </p>
+            </div>
+    </div>
+</div>
+    <br>
+    <div class="row">
+      <div class="collapse-group">
+        <a class="col-md-12 col-lg-12 col-sm-12 col-xs-12 btn" style="padding: 20px; font-size:2em" href="#">Presentation Upload &raquo;</a>
+          <div class="collapse " ><p>Presentation uploaded will help you upload a pwerpoint to the wall. You can access the uploader <a href="../manager/presentationUpload.jsp"  target="_blank"> here</a> (will open link in new tab)</p>
+        <br>
+            <p>
+           1. To upload a new presentation, click on browse/ auswählen to select you ppt fiel. (Only ppt and pptx files are possible)
+            </p><br>
+            <p>
+                2. Select the options you need: <br>
+                "Generate overview scene(s)" will create overview scenes based on the total slides you have.
+                <br>
+                "Generate zoom scenes" will create scenes for each slide where the slide will be displayed on the whole wall. 
+            </p><br>
+            <p>
+                3. Select one of the aspect ratio, this depends on the format you created your presentation, if you are not sure, try 4/3, that is the default for Microsoft.
+            </p><br>
+            <p>
+                4. Now you can click "Upload presentation", this will take a little while as it need to decompose the presentation, please be patient and dont close the browserr at this time. If you get a success mesg, it will also contain the link to the newly created scenario. If you get an error mesg, they are self explanatory.
+            </p>
+            </div>
+    </div>
+</div>
+    </div>
+    <script src="js/bootstrap.js"></script>
+    <script type="text/javascript">
+    $('.row .btn').on('click', function(e) {
+    e.preventDefault();
+    var $this = $(this);
+    var $collapse = $this.closest('.collapse-group').find('.collapse');
+    $collapse.collapse('toggle');
+});
+    </script>
+</body>
+</html>

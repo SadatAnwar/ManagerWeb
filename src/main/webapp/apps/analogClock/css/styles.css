@@ -1,0 +1,57 @@
+
+* { margin:0; padding:0; }
+body {
+	padding: 2em 4em;
+	font-family: sans-serif;
+}
+h2 {
+	margin-top:1em;
+	font-size:120%;
+}
+xmp, pre {
+	padding:1em;
+}
+p {
+	line-height:1.5em;
+	padding-bottom:0.7em;
+}
+
+dd {
+	margin-left:2em; margin-bottom:0.5em;
+}
+
+li {
+	margin-left:2em; margin-bottom:0.5em;
+}
+
+table {
+	border-collapse: collapse;
+	margin: 0.5em 1em 1em;
+}
+
+td {
+		padding: 0.5em;
+		vertical-align:top;
+}
+
+.withBorder td {
+		border: 1px solid #ddd;
+}
+
+.leftRightPad {
+	padding-left:0.2em;
+	padding-right:0.2em;
+}
+.ads1 {
+	border:2px solid #eee;
+	margin:1em;
+	padding:4px;
+	float:right;
+}
+.ads2 {
+	border:2px solid #eee;
+	margin:1em;
+	padding:4px;
+	margin-top:4em;
+	text-align:center;
+}
