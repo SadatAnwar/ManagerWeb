@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<visml xmlns="http://visxml.promivis.server.oryxeditor.org" version="2.0">
+                <meta>
+                               <title>ARPOS Dashboard</title>
+                               <author>Fraunhofer IAO</author>
+                               <style>
+                                               <color-list>
+                                                               <color>
+                                                                              <css-color>#009474</css-color>
+                                                               </color>
+                                                               <color>
+                                                                              <css-color>#777777</css-color>
+                                                               </color>
+                                                               <color>
+                                                                              <css-color>#00BC93</css-color>
+                                                               </color>
+                                                               <color>
+                                                                              <css-color>#999999</css-color>
+                                                               </color>
+                                                               <color>
+                                                                              <css-color>#008266</css-color>
+                                                               </color>
+                                                               <color>
+                                                                              <css-color>#555555</css-color>
+                                                               </color>
+                                               </color-list>
+                               </style>
+                               <semantic xmlns="">
+                                               <relation type="role" id="InsuranceManagerRole" priority="0"/>
+                                               <relation type="allowedUser" id="2" priority="0"/>
+                               </semantic>
+                </meta>
+                <dashboard>
+                               
+                               <visualization category="text" dataset="ersparnis_auto_letzter_tag_avgDataSet" id="ersparnis_auto_letzter_tag_avg" type="text">
+                                               <title>Ersparnis auto durch.</title>
+                                               <description>Ersparnis automatisch durchschnittlich pro Fall in den letzten 24 Stunden</description>
+                                               <style>
+                                                               <parameter-list>
+                                                                              <parameter name="javascript">                              if (!isNaN(parseFloat(input))) {                  output = parseFloat(input).toFixed(2) + '&amp;nbsp;EUR';                }                          </parameter>
+                                                               </parameter-list>
+                                               </style>
+                                               <interaction type="click">
+                                                               <scope>
+                                                                              <element-instance>ersparnis_auto_letzter_tag_avg</element-instance>
+                                                               </scope>
+                                               </interaction>
+                                               <labels>
+                                                               <label valueName="SINGLE_VALUE_CAPTION">ersparnis_auto_letzter_tag_avg</label>
+                                               </labels>
+                               </visualization>
+                               <visualization category="text" dataset="ersparnis_auto_letzter_tag_sumDataSet" id="ersparnis_auto_letzter_tag_sum" type="text">
+                                               <title>Ersparnis auto Summe</title>
+                                               <description>Ersparnis automatisch Summe in den letzten 24 Stunden</description>
+                                               <style>
+                                                               <parameter-list>
+                                                                              <parameter name="javascript">                              if (!isNaN(parseFloat(input))) {                    output = parseFloat(input).toFixed(2)+ '&amp;nbsp;EUR';                }                          </parameter>
+                                                               </parameter-list>
+                                               </style>
+                                               <interaction type="click">
+                                                               <scope>
+                                                                              <element-instance>ersparnis_auto_letzter_tag_sum</element-instance>
+                                                               </scope>
+                                               </interaction>
+                                               <labels>
+                                                               <label valueName="SINGLE_VALUE_CAPTION">ersparnis_auto_letzter_tag_sum</label>
+                                               </labels>
+                               </visualization>
+                               
+                               
+                               
+                               <visualization category="text" dataset="ersparnis_exp_letzter_tag_avgDataSet" id="ersparnis_exp_letzter_tag_avg" type="text">
+                                               <title>Ersparnis Experte durch.</title>
+                                               <description>Ersparnis Experte durchschnittlich pro Fall in den letzten 24 Stunden</description>
+                                               <style>
+                                                               <parameter-list>
+                                                                              <parameter name="javascript">                              if (!isNaN(parseFloat(input))) {                  output = parseFloat(input).toFixed(2)+ '&amp;nbsp;EUR';                }                          </parameter>
+                                                               </parameter-list>
+                                               </style>
+                                               <interaction type="click">
+                                                               <scope>
+                                                                              <element-instance>ersparnis_exp_letzter_tag_avg</element-instance>
+                                                               </scope>
+                                               </interaction>
+                                               <labels>
+                                                               <label valueName="SINGLE_VALUE_CAPTION">ersparnis_exp_letzter_tag_avg</label>
+                                               </labels>
+                               </visualization>
+                               <visualization category="text" dataset="ersparnis_exp_letzter_tag_sumDataSet" id="ersparnis_exp_letzter_tag_sum" type="text">
+                                               <title>Ersparnis Experte Summe</title>
+                                               <description>Ersparnis Experte Summe in den letzten 24 Stunden</description>
+                                               <style>
+                                                               <parameter-list>
+                                                                              <parameter name="javascript">                              if (!isNaN(parseFloat(input))) {               output = parseFloat(input).toFixed(2)+ '&amp;nbsp;EUR';                }                          </parameter>
+                                                               </parameter-list>
+                                               </style>
+                                               <interaction type="click">
+                                                               <scope>
+                                                                              <element-instance>ersparnis_exp_letzter_tag_sum</element-instance>
+                                                               </scope>
+                                               </interaction>
+                                               <labels>
+                                                               <label valueName="SINGLE_VALUE_CAPTION">ersparnis_exp_letzter_tag_sum</label>
+                                               </labels>
+                               </visualization>
+                               <visualization category="text" dataset="ersparnis_letzter_tag_avgDataSet" id="ersparnis_letzter_tag_avg" type="text">
+                                               <title>Ersparnis gesamt durch.</title>
+                                               <description>Ersparnis gesamt durchschnittlich pro Fall in den letzten 24 Stunden</description>
+                                               <style>
+                                                               <parameter-list>
+                                                                              <parameter name="javascript">                              if (!isNaN(parseFloat(input))) {                  output = parseFloat(input).toFixed(2)+ '&amp;nbsp;EUR';                }                          </parameter>
+                                                               </parameter-list>
+                                               </style>
+                                               <interaction type="click">
+                                                               <scope>
+                                                                              <element-instance>ersparnis_letzter_tag_avg</element-instance>
+                                                               </scope>
+                                               </interaction>
+                                               <labels>
+                                                               <label valueName="SINGLE_VALUE_CAPTION">ersparnis_letzter_tag_avg</label>
+                                               </labels>
+                               </visualization>
+                               <visualization category="text" dataset="ersparnis_letzter_tag_sumDataSet" id="ersparnis_letzter_tag_sum" type="text">
+                                               <title>Ersparnis gesamt Summe</title>
+                                               <description>Ersparnis gesamt Summe in den letzten 24 Stunden</description>
+                                               <style>
+                                                               <parameter-list>
+                                                                              <parameter name="javascript">                              if (!isNaN(parseFloat(input))) {               output = parseFloat(input).toFixed(2)+ '&amp;nbsp;EUR';                }                          </parameter>
+                                                               </parameter-list>
+                                               </style>
+                                               <interaction type="click">
+                                                               <scope>
+                                                                              <element-instance>ersparnis_letzter_tag_sum</element-instance>
+                                                               </scope>
+                                               </interaction>
+                                               <labels>
+                                                               <label valueName="SINGLE_VALUE_CAPTION">ersparnis_letzter_tag_sum</label>
+                                               </labels>
+                               </visualization>
+                               
+                               <visualizationGroup id="anzahlFaelleGroup">
+                                               <title>Automatisch und manuell abgeschlossenne Fälle</title>
+                                               <description>Automatisch und manuell abgeschlossenne Fälle</description>
+                                               <visualization category="chart" dataset="Anzahl_Faelle_automatisch_letzte_StundeDataSet" id="Anzahl_Faelle_automatisch_letzte_Stunde" type="line">
+                                                               <title>Anzahl Fälle automatisch letzte Stunde</title>
+                                                               <interaction type="click">
+                                                                              <scope>
+                                                                                              <element-instance>Anzahl_Faelle_automatisch_letzte_Stunde</element-instance>
+                                                                              </scope>
+                                                               </interaction>
+                                                               <labels>
+                                                                              <label valueName="SINGLE_VALUE_CAPTION">Anzahl_Faelle_automatisch_letzte_Stunde</label>
+                                                               </labels>
+                                               </visualization>
+                                               <visualization category="chart" dataset="Anzahl_Faelle_manuell_letzte_StundeDataSet" id="Anzahl_Faelle_manuell_letzte_Stunde" type="line">
+                                                               <title>Anzahl Fälle manuell letzte Stunde</title>
+                                                               <interaction type="click">
+                                                                              <scope>
+                                                                                              <element-instance>Anzahl_Faelle_manuell_letzte_Stunde</element-instance>
+                                                                              </scope>
+                                                               </interaction>
+                                                               <labels>
+                                                                              <label valueName="SINGLE_VALUE_CAPTION">Anzahl_Faelle_manuell_letzte_Stunde</label>
+                                                               </labels>
+                                               </visualization>
+                               </visualizationGroup>
+                               
+                               <visualization category="chart" dataset="aktive_benutzerDataSet" id="aktive_benutzer" type="line">
+                                               <title>Aktive Benutzer</title>
+                                               <interaction type="click">
+                                                               <scope>
+                                                                              <element-instance>aktive_benutzer</element-instance>
+                                                               </scope>
+                                               </interaction>
+                                               <labels>
+                                                               <label valueName="SINGLE_VALUE_CAPTION">aktive_benutzer</label>
+                                               </labels>
+                               </visualization>
+                               <visualization category="chart" dataset="average_anzahl_bilderDataSet" id="average_anzahl_bilder" type="line">
+                                               <title>Anzahl Bilder durch.</title>
+
+                                               <interaction type="click">
+                                                               <scope>
+                                                                              <element-instance>average_anzahl_bilder</element-instance>
+                                                               </scope>
+                                               </interaction>
+                                               <labels>
+                                                               <label valueName="SINGLE_VALUE_CAPTION">average_anzahl_bilder</label>
+                                               </labels>
+                                </visualization>
+
+                               
+                               <visualizationGroup id="gdvGroup">
+                                               <title>GDV Netz: Ein- und Ausgang</title>
+                                               <description>Ein- und ausgehende Fälle über GDV</description>
+                               
+                                               <visualization category="chart" dataset="faelle_gdv_gateway_letzte_stundeDataSet" id="faelle_gdv_gateway_letzte_stunde" type="line">
+                                                               <title>Fälle GDV Eingang letzte Stunde</title>
+                                                               <interaction type="click">
+                                                                              <scope>
+                                                                                              <element-instance>faelle_gdv_gateway_letzte_stunde</element-instance>
+                                                                              </scope>
+                                                               </interaction>
+                                                               <labels>
+                                                                              <label valueName="SINGLE_VALUE_CAPTION">faelle_gdv_gateway_letzte_stunde</label>
+                                                               </labels>
+                                               </visualization>
+                                               <visualization category="chart" dataset="faelle_gdv_out_letzte_stundeDataSet" id="faelle_gdv_out_letzte_stunde" type="line">
+                                                               <title>Fälle GDV Ausgang letzte Stunde</title>
+                                                               <interaction type="click">
+                                                                              <scope>
+                                                                                              <element-instance>faelle_gdv_out_letzte_stunde</element-instance>
+                                                                              </scope>
+                                                               </interaction>
+                                                               <labels>
+                                                                              <label valueName="SINGLE_VALUE_CAPTION">faelle_gdv_out_letzte_stunde</label>
+                                                               </labels>
+                                               </visualization>
+                                               
+                               </visualizationGroup>
+                               
+                               <visualization category="text" dataset="anzahl_aktiver_werkstaetten_kpiDataSet" id="anzahl_aktiver_werkstaetten_kpi" type="text">
+                                               <title>Anzahl aktiver Werkstätten</title>
+                                               <interaction type="click">
+                                                               <scope>
+                                                                              <element-instance>anzahl_aktiver_werkstaetten_kpi</element-instance>
+                                                               </scope>
+                                               </interaction>
+                                               <labels>
+                                                               <label valueName="SINGLE_VALUE_CAPTION">anzahl_aktiver_werkstaetten_kpi</label>
+                                               </labels>
+                               </visualization>
+                               <visualization category="text" dataset="letzter_deploymentstand_werkstaetten_kpiDataSet" id="letzter_deploymentstand_werkstaetten_kpi" type="text">
+                                               <title>Letzte Aktualisierung Werkstätten</title>
+                                               <interaction type="click">
+                                                               <scope>
+                                                                              <element-instance>letzter_deploymentstand_werkstaetten_kpi</element-instance>
+                                                               </scope>
+                                               </interaction>
+                               </visualization>
+                               <visualization category="text" dataset="offene_faelle_expertenportal_kpiDataSet" id="offene_faelle_expertenportal_kpi" type="text">
+                                               <title>Offene Fälle</title>
+                                               <interaction type="click">
+                                                               <scope>
+                                                                              <element-instance>offene_faelle_expertenportal_kpi</element-instance>
+                                                               </scope>
+                                               </interaction>
+                                               <labels>
+                                                               <label valueName="SINGLE_VALUE_CAPTION">offene_faelle_expertenportal_kpi</label>
+                                               </labels>
+                               </visualization>
+                               <visualization category="text" dataset="offene_faelle_expertenportal_problem_kpiDataSet" id="offene_faelle_expertenportal_problem_kpi" type="text">
+                                               <title>Offene Fälle mit Problem</title>
+                                               <interaction type="click">
+                                                               <scope>
+                                                                              <element-instance>offene_faelle_expertenportal_problem_kpi</element-instance>
+                                                               </scope>
+                                               </interaction>
+                                               <labels>
+                                                               <label valueName="SINGLE_VALUE_CAPTION">offene_faelle_expertenportal_problem_kpi</label>
+                                               </labels>
+                               </visualization>
+                               <visualization category="text" dataset="offene_faelle_expertenportal_stopp_kpiDataSet" id="offene_faelle_expertenportal_stopp_kpi" type="text">
+                                               <title>Offene Fälle mit Stoppregel</title>
+                                               <interaction type="click">
+                                                               <scope>
+                                                                              <element-instance>offene_faelle_expertenportal_stopp_kpi</element-instance>
+                                                               </scope>
+                                               </interaction>
+                                               <labels>
+                                                               <label valueName="SINGLE_VALUE_CAPTION">offene_faelle_expertenportal_stopp_kpi</label>
+                                               </labels>
+                               </visualization>
+                               <visualization category="chart" dataset="plz_anteileDataSet" id="plz_anteile" type="bar">
+                                               <title>PLZ Bereiche</title>
+                                               <interaction type="click">
+                                                               <scope>
+                                                                              <element-instance>plz_anteile</element-instance>
+                                                               </scope>
+                                               </interaction>
+                               </visualization>
+                               <visualization category="text" dataset="timestamp_aeltester_offener_fall_kpiDataSet" id="timestamp_aeltester_offener_fall_kpi" type="text">
+                                               <title>Datum Ältester offener Fall</title>
+                                               <style>
+                                                               <parameter-list>
+                                                                              <parameter name="javascript">                    output = DashboardUtils.dateTime(input * 1);                                    </parameter>
+                                                               </parameter-list>
+                                               </style>
+                                               <interaction type="click">
+                                                               <scope>
+                                                                              <element-instance>timestamp_aeltester_offener_fall_kpi</element-instance>
+                                                               </scope>
+                                               </interaction>
+                                               <labels>
+                                                               <label valueName="SINGLE_VALUE_CAPTION">timestamp_aeltester_offener_fall_kpi</label>
+                                               </labels>
+                               </visualization>
+
+                
+                               <visualization category="chart" dataset="decide___versicherungsartDataSet" id="decide___versicherungsart" type="bar">
+                                               <title>Versicherungsart</title>
+                                               <interaction type="click">
+                                                               <scope>
+                                                                              <element-instance>decide___versicherungsart</element-instance>
+                                                               </scope>
+                                               </interaction>
+                               </visualization>
+                               <visualization category="chart" dataset="dispatch___abschlussartDataSet" id="dispatch___abschlussart" type="bar">
+                                               <title>Abschlussart</title>
+                                               <interaction type="click">
+                                                               <scope>
+                                                                              <element-instance>dispatch___abschlussart</element-instance>
+                                                               </scope>
+                                               </interaction>
+                               </visualization>
+
+                
+                </dashboard>
+                <alerting>
+
+                </alerting>
+                <data>
+                               <datasources>
+                                               <cepValueProvider id="cep">
+                                                               <url>https://dashboard.iao.fraunhofer.de/arpos</url>
+                                                               <user/>
+                                                               <password/>
+                                               </cepValueProvider>
+                                               <url id="alerts">
+                                                               <url>https://dashboard.iao.fraunhofer.de/arpos/alerts</url>
+                                                               <user/>
+                                                               <password/>
+                                               </url>
+                               </datasources>
+                               <datasets>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="versicherungsart_bekanntDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="versicherungsart_bekannt" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="boolean"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>versicherungsart_bekannt</parameter>
+                                                               </query>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="Anzahl_Faelle_automatisch_letzte_StundeDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="Anzahl_Faelle_automatisch_letzte_Stunde" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="integer"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>Anzahl_Faelle_automatisch_letzte_Stunde</parameter>
+                                                               </query>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="Anzahl_Faelle_manuell_letzte_StundeDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="Anzahl_Faelle_manuell_letzte_Stunde" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="integer"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>Anzahl_Faelle_manuell_letzte_Stunde</parameter>
+                                                               </query>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="aktive_benutzerDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="aktive_benutzer" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="integer"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>aktive_benutzer</parameter>
+                                                               </query>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="average_anzahl_bilderDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="average_anzahl_bilder" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="double"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>average_anzahl_bilder</parameter>
+                                                               </query>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="ersparnis_auto_letzter_tag_avgDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="ersparnis_auto_letzter_tag_avg" priority="1" type="proGoalRef"/>
+                                                                               <relation id="DataType" type="double"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>ersparnis_auto_letzter_tag_avg</parameter>
+                                                               </query>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="ersparnis_auto_letzter_tag_sumDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="ersparnis_auto_letzter_tag_sum" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="double"/>
+                                                               </semantic>
+                                                               <query>
+                                                                               <parameter>ersparnis_auto_letzter_tag_sum</parameter>
+                                                               </query>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="ersparnis_exp_letzter_tag_avgDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="ersparnis_exp_letzter_tag_avg" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="double"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>ersparnis_exp_letzter_tag_avg</parameter>
+                                                               </query>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="ersparnis_exp_letzter_tag_sumDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="ersparnis_exp_letzter_tag_sum" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="double"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>ersparnis_exp_letzter_tag_sum</parameter>
+                                                               </query>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="ersparnis_letzter_tag_avgDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="ersparnis_letzter_tag_avg" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="double"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>ersparnis_letzter_tag_avg</parameter>
+                                                               </query>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="ersparnis_letzter_tag_sumDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="ersparnis_letzter_tag_sum" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="double"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>ersparnis_letzter_tag_sum</parameter>
+                                                               </query>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="faelle_gdv_gateway_letzte_stundeDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="faelle_gdv_gateway_letzte_stunde" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="long"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>faelle_gdv_gateway_letzte_stunde</parameter>
+                                                               </query>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="faelle_gdv_out_letzte_stundeDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="faelle_gdv_out_letzte_stunde" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="long"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>faelle_gdv_out_letzte_stunde</parameter>
+                                                               </query>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="anzahl_aktiver_werkstaetten_kpiDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="anzahl_aktiver_werkstaetten_kpi" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="int"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>anzahl_aktiver_werkstaetten_kpi</parameter>
+                                                               </query>
+                                                               <aggregation type="count">20</aggregation>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="letzter_deploymentstand_werkstaetten_kpiDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="letzter_deploymentstand_werkstaetten_kpi" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="string"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>letzter_deploymentstand_werkstaetten_kpi</parameter>
+                                                               </query>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="offene_faelle_expertenportal_kpiDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="offene_faelle_expertenportal_kpi" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="int"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>offene_faelle_expertenportal_kpi</parameter>
+                                                               </query>
+                                                               <aggregation type="count">20</aggregation>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="offene_faelle_expertenportal_problem_kpiDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="offene_faelle_expertenportal_problem_kpi" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="int"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>offene_faelle_expertenportal_problem_kpi</parameter>
+                                                               </query>
+                                                               <aggregation type="count">20</aggregation>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="offene_faelle_expertenportal_stopp_kpiDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="offene_faelle_expertenportal_stopp_kpi" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="int"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>offene_faelle_expertenportal_stopp_kpi</parameter>
+                                                               </query>
+                                                               <aggregation type="count">20</aggregation>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="plz_anteileDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="plz_anteile" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="enumeration"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>plz_anteile</parameter>
+                                                               </query>
+                                                               <buckets>
+                                                                              <bucket>0</bucket>
+                                                                              <bucket>1</bucket>
+                                                                              <bucket>2</bucket>
+                                                                              <bucket>3</bucket>
+                                                                              <bucket>4</bucket>
+                                                                              <bucket>5</bucket>
+                                                                              <bucket>6</bucket>
+                                                                              <bucket>7</bucket>
+                                                                              <bucket>8</bucket>
+                                                                              <bucket>9</bucket>
+                                                                              <bucket>?</bucket>
+                                                               </buckets>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="timestamp_aeltester_offener_fall_kpiDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="timestamp_aeltester_offener_fall_kpi" priority="1" type="proGoalRef"/>
+                                                                              <relation id="SemanticDataType" type="pointintime"/>
+                                                                              <relation id="DataType" type="long"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>timestamp_aeltester_offener_fall_kpi</parameter>
+                                                               </query>
+                                                               <aggregation type="count">20</aggregation>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="bildextraktion_ende___anzahl_bilderDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="bildextraktion_ende___anzahl_bilder" priority="1" type="proGoalRef"/>
+                                                                              <relation id="SemanticDataType" type="pointintime"/>
+                                                                              <relation id="DataType" type="double"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>bildextraktion_ende___anzahl_bilder</parameter>
+                                                               </query>
+                                                               <aggregation type="count">20</aggregation>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="check___plz_first_digitDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="check___plz_first_digit" priority="1" type="proGoalRef"/>
+                                                                              <relation id="SemanticDataType" type="pointintime"/>
+                                                                              <relation id="DataType" type="string"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>check___plz_first_digit</parameter>
+                                                               </query>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="decide___ermittelter_betrag_automatischDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="decide___ermittelter_betrag_automatisch" priority="1" type="proGoalRef"/>
+                                                                              <relation id="SemanticDataType" type="pointintime"/>
+                                                                              <relation id="DataType" type="double"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>decide___ermittelter_betrag_automatisch</parameter>
+                                                               </query>
+                                                               <aggregation type="count">20</aggregation>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="decide___geforderter_betragDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="decide___geforderter_betrag" priority="1" type="proGoalRef"/>
+                                                                              <relation id="SemanticDataType" type="pointintime"/>
+                                                                              <relation id="DataType" type="double"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>decide___geforderter_betrag</parameter>
+                                                               </query>
+                                                               <aggregation type="count">20</aggregation>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="decide___versicherungsartDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                               <relation id="decide___versicherungsart" priority="1" type="proGoalRef"/>
+                                                                              <relation id="SemanticDataType" type="pointintime"/>
+                                                                              <relation id="DataType" type="enumeration"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>decide___versicherungsart</parameter>
+                                                               </query>
+                                                               <buckets>
+                                                                              <bucket>Kasko</bucket>
+                                                                              <bucket>Haftpflicht</bucket>
+                                                                              <bucket>Unbekannt</bucket>
+                                                               </buckets>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="dispatch___abschlussartDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="dispatch___abschlussart" priority="1" type="proGoalRef"/>
+                                                                              <relation id="SemanticDataType" type="pointintime"/>
+                                                                              <relation id="DataType" type="enumeration"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>dispatch___abschlussart</parameter>
+                                                               </query>
+                                                               <buckets>
+                                                                              <bucket>manuell</bucket>
+                                                                              <bucket>automatisch</bucket>
+                                                               </buckets>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="dispatch___ermittelter_betragDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="dispatch___ermittelter_betrag" priority="1" type="proGoalRef"/>
+                                                                              <relation id="SemanticDataType" type="pointintime"/>
+                                                                              <relation id="DataType" type="double"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>dispatch___ermittelter_betrag</parameter>
+                                                               </query>
+                                                               <aggregation type="count">20</aggregation>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="statistik___anzahl_aktiver_werkstaettenDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="statistik___anzahl_aktiver_werkstaetten" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="int"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>statistik___anzahl_aktiver_werkstaetten</parameter>
+                                                               </query>
+                                                               <aggregation type="count">20</aggregation>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="statistik___letzter_deploymentstand_werkstaettenDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="statistik___letzter_deploymentstand_werkstaetten" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="string"/>
+                                                               </semantic>
+                                                               <query>
+                                                                               <parameter>statistik___letzter_deploymentstand_werkstaetten</parameter>
+                                                               </query>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="statistik___offene_faelle_expertenportalDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="statistik___offene_faelle_expertenportal" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="int"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>statistik___offene_faelle_expertenportal</parameter>
+                                                               </query>
+                                                               <aggregation type="count">20</aggregation>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="statistik___offene_faelle_expertenportal_problemDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="statistik___offene_faelle_expertenportal_problem" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="int"/>
+                                                               </semantic>
+                                                               <query>
+                                                                               <parameter>statistik___offene_faelle_expertenportal_problem</parameter>
+                                                               </query>
+                                                              <aggregation type="count">20</aggregation>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="statistik___offene_faelle_expertenportal_stoppDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="statistik___offene_faelle_expertenportal_stopp" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="int"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>statistik___offene_faelle_expertenportal_stopp</parameter>
+                                                               </query>
+                                                               <aggregation type="count">20</aggregation>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="webseite_aufruf___bearbeiterDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="webseite_aufruf___bearbeiter" priority="1" type="proGoalRef"/>
+                                                                              <relation id="SemanticDataType" type="pointintime"/>
+                                                                              <relation id="DataType" type="string"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>webseite_aufruf___bearbeiter</parameter>
+                                                               </query>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="cep" format="json" id="statistik___timestamp_aeltester_offener_fallDataSet" type="name-value-list" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="statistik___timestamp_aeltester_offener_fall" priority="1" type="proGoalRef"/>
+                                                                              <relation id="DataType" type="timestamp"/>
+                                                               </semantic>
+                                                               <query>
+                                                                              <parameter>statistik___timestamp_aeltester_offener_fall</parameter>
+                                                               </query>
+                                               </dataset>
+                                               <dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datasource="alerts" format="json" id="versicherungsart_bekanntAlertDataset" type="alert" xsi:type="tDataset">
+                                                               <semantic>
+                                                                              <relation id="versicherungsart_bekanntAlert" type="alert"/>
+                                                               </semantic>
+                                                               <query/>
+                                               </dataset>
+                               </datasets>
+                </data>
+</visml>

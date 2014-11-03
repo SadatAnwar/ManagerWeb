@@ -104,6 +104,7 @@ public class ShowMuVi {
 		return getMapForScene(scene, true);
 	}
 	
+	/*This is where the scene to URL mapping begins*/
 	public Map<ScreenID, URL> getMapForScene(Scene scene, boolean checkResetColor) {
 		Map<ScreenID, URL> map = new HashMap<>();
 		if (Utils.isNotEmpty(scene.getLargeimages())) {
