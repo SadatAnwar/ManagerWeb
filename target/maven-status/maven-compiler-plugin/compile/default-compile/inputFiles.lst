@@ -24,6 +24,7 @@ U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\logic\Sc
 U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\web\PresentationController.java
 U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\web\MuViStateController.java
 U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\logic\PowerPointConverter.java
+U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\domain\Dataset.java
 U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\domain\SearchResults.java
 U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\domain\Video.java
 U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\logic\ScreenDCMapper.java
@@ -48,10 +49,12 @@ U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\web\Simp
 U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\domain\LargeText.java
 U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\domain\SearchResultType.java
 U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\domain\MuVi.java
+U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\logic\DashboardToScenarioHandler.java
 U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\domain\AnimatedText.java
 U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\logic\ScreenIDCalculator.java
 U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\backend\DatabaseUtils.java
 U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\logic\ShowMuVi.java
+U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\web\DashboardController.java
 U:\workspace\ManagerWeb\src\main\java\intel\management\wsman\WsmanException.java
 U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\web\ImageController.java
 U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\power\ILogDevice.java
@@ -73,6 +76,7 @@ U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\domain\S
 U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\domain\Text.java
 U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\domain\Scene.java
 U:\workspace\ManagerWeb\src\main\java\intel\management\wsman\WsmanUtils.java
+U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\domain\Dashboard.java
 U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\logic\ChromeServiceWindowFacade.java
 U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\logic\ShowLargeVideo.java
 U:\workspace\ManagerWeb\src\main\java\de\fraunhofer\iao\muvi\managerweb\logic\ShowSearchResults.java

@@ -24,7 +24,21 @@ function showScene(scenarioId, sceneNumber) {
 			  }
 		});
 }
-
+//The mute scenario is scenario ID 1 and contains black screens
+function muteScene() {
+	$('#message').html("Scene Mute");
+	$.ajax({
+		  type: "POST",
+		  url: "showScene.do",
+		  data: { scenarioId: 1, sceneNumber: 1 },
+		  success: function(data) {
+		 	  $('#message').html(data);
+			  },
+	     error: function(e) {
+	  	   $('#message').html("Error communicating!");
+			  }
+		});
+}
 //Code involved in playing the entire scenario
 var Sceneshot;
 var SceneName;
@@ -139,6 +153,8 @@ function previous(scenarioId, maxScene){
 			</li>
 		</c:forEach>
 	</ol>
+	
+<p id="scenariosLink"><a href="javascript:muteScene()">Mute</a></p>	
 
 <p class="mainLink"><a href="javascript:checkShowScenario(${scenario.id}, ${scenario.scenesCount}, 0)">Play scenario</a></p>
 
