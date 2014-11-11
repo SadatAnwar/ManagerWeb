@@ -51,6 +51,9 @@ public class Scene {
 	@XmlElement(name = "largeurl")
 	private List<LargeURL> largeURLs;
 	
+	@XmlElement(name = "visml")
+	private URL visml;
+	
 	public String getName() {
 		return name;
 	}
@@ -125,5 +128,11 @@ public class Scene {
 	}
 	public void setScreenshot(URL screenshot) {
 		this.screenshot = screenshot;
+	}
+	public URL getVisml() {
+		return visml;
+	}
+	public void setVisml(URL visml) {
+		this.visml = visml;
 	}
 }

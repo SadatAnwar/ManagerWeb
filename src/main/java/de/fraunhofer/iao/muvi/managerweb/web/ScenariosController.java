@@ -228,7 +228,9 @@ public class ScenariosController extends MainController {
 		return "scenarioPlayer.jsp";
 	}
 	
-	//Written to play the entire scenario as slide show. 
+	/*
+	 * Written to play the entire scenario as slide show. 
+	 */
 	@RequestMapping(value = "playEntireScenario.do")
 	@ResponseBody
 	public String playEntireScenario(HttpServletRequest request, ModelMap model) throws InterruptedException {

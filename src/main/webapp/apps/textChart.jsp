@@ -46,9 +46,8 @@
 <script src="../js/d3.min.js"></script>
 <script type="text/javascript" src="../js/jquery-1.11.0.js"></script>
 <script type="text/javascript">
-var url = 'https://dashboard.iao.fraunhofer.de/arpos/dashboard-values?&value=anzahl_aktiver_werkstaetten_kpi'; 
-	var data;  
-	var title = "PLZ Bereiche";
+	var url = "<%=request.getParameter("url")%>";
+	var title = "<%=request.getParameter("title")%>";
 	
 $.get(url, function (data2) {
   data = data2;
@@ -56,7 +55,7 @@ $.get(url, function (data2) {
   var last = keys[keys.length-1];
   console.log(data[last].value);
   $( "#value" ).append( data[last].value);
-  $( "#label" ).append( decodeURIComponent(escape("Anzahl aktiver Werkstätten")));
+  $( "#label" ).append( decodeURIComponent(title));
 });
 </script>
 <table>

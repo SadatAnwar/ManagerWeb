@@ -157,6 +157,14 @@ public class Utils {
 
 		return value != null && value.trim().length() > 0;
 	}
+	/**
+	 * Returns true, if the given URL is neither {@code null} nor empty.
+	 * White space characters are ignored.
+	 */
+	public static boolean isNotEmpty(URL value) {
+
+		return value != null && isNotEmpty(value.toString());
+	}
 
 	/**
 	 * Returns true, if the given list is {@code null} or empty.

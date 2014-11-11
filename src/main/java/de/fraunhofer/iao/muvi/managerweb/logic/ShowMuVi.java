@@ -38,6 +38,8 @@ public class ShowMuVi {
 	
 	private ShowLargeVideo showLargeVideo;
 	
+	private ShowDashboard showDashboard;
+	
 	/**
 	 * Show a full presentation on the wall.
 	 * Start by showing all scenarios as defined,
@@ -94,7 +96,7 @@ public class ShowMuVi {
 		}
 		log.debug("Done showing scenario " + scenario.getId() + " - " + scenario.getName());
 	}
-	
+	//scene to screen map is created
 	public void showScene(Scene scene) {
 		Map<ScreenID, URL> map = getMapForScene(scene);
 		showURLOnScreen.showUrlsOnScreens(map, ScreenState.URL);
@@ -104,39 +106,54 @@ public class ShowMuVi {
 		return getMapForScene(scene, true);
 	}
 	
-	/*This is where the scene to URL mapping begins*/
+	/*Scenes are mapped to displays here
+	 * each scene defines the display content to be viewed on the displays
+	 *  if a new scene type is added to the list of scenes, the required logic should be updated here
+	 */
 	public Map<ScreenID, URL> getMapForScene(Scene scene, boolean checkResetColor) {
 		Map<ScreenID, URL> map = new HashMap<>();
+		//Does this scene contain a large Image? 
 		if (Utils.isNotEmpty(scene.getLargeimages())) {
 			for (LargeImage largeImage : scene.getLargeimages()) {
 				map.putAll(showLargeImage.getMapForLargeImage(largeImage));
 			}
 		}
+		//Does this scene contain a large videos? 
 		if (Utils.isNotEmpty(scene.getLargevideos())) {
 			for (LargeVideo largeVideo : scene.getLargevideos()) {
 				map.putAll(showLargeVideo.getMapForLargeVideo(largeVideo));
 			}
 		}
+		//Does this scene contain search results? 
 		if (Utils.isNotEmpty(scene.getSearchresults())) {
 			for (SearchResults searchResults : scene.getSearchresults()) {
 				map.putAll(showSearchResults
 						.getMapForSearchResults(searchResults));
 			}
 		}
+		//Does this scene contain a set of screens? 
 		if (Utils.isNotEmpty(scene.getScreens())) {
 			for (Screen screen : scene.getScreens()) {
 				map.put(screen.getId(), getURLForScreen(screen));
 			}
 		}
+		//Does this scene contain a large TEXT? 
 		if (Utils.isNotEmpty(scene.getLargetexts())) {
 			for (LargeText largetext : scene.getLargetexts()) {
 				map.putAll(showTextOnScreen.getMapForLargeText(largetext));
 			}
 		}
+		//Does this scene contain a large URL? 
 		if (Utils.isNotEmpty(scene.getLargeURLs())) {
 			for (LargeURL largeURL : scene.getLargeURLs()) {
 				map.putAll(showURLOnScreen.getMapForLargeURL(largeURL));
 			}
+		}
+		//Does this scene contain a VISML URL?
+		if (Utils.isNotEmpty(scene.getVisml())) {
+			//currently we can have only one VSM per scene
+			map.putAll(showDashboard.getMapForDashboard(scene.getVisml()));
+		
 		}
 		if (checkResetColor) {
 			/* If a reset color is defined, use it to erase the non-defined screens */
@@ -232,6 +249,14 @@ public class ShowMuVi {
 
 	public void setShowLargeVideo(ShowLargeVideo showLargeVideo) {
 		this.showLargeVideo = showLargeVideo;
+	}
+
+	public ShowDashboard getShowDashboard() {
+		return showDashboard;
+	}
+
+	public void setShowDashboard(ShowDashboard showDashboard) {
+		this.showDashboard = showDashboard;
 	}
 		
 }
