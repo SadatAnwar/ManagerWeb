@@ -38,7 +38,7 @@ public class ShowDashboard {
 	public Map<ScreenID, URL> getMapForDashboard(URL visml) {
 		Map<ScreenID, URL> map = new HashMap<>();
 		Map<String, Visualization> visualizationMap = new HashMap<>();
-		int n=1;
+		int n=7;
 		// get the XML file from the URL
 		
 		try {
@@ -94,9 +94,11 @@ public class ShowDashboard {
 							
 						}
 					}
-					if(visualizationMap.get(dataset.getId())!=null) {
-						visualizationMap.get(dataset.getId()).setDataset(dataset);
-						map.put(new ScreenID(n), visualizationMap.get(dataset.getId()).getUrl());
+					Visualization visualization = visualizationMap.get(dataset.getId());
+					if(visualization!=null) {
+						visualization.setDataset(dataset);
+						visualization.init();
+						map.put(new ScreenID(n), visualization.getUrl());
 						n++;
 					}
 					

@@ -30,7 +30,7 @@ public class Visualization {
 		return this.category.matches("chart");
 	}
 	
-	private void makeUrl() throws MalformedURLException {
+	public void init() throws MalformedURLException {
 		String appUrlBase = "http://137.251.35.100:3636/manager/apps/";
 		String requestUrl ="https://dashboard.iao.fraunhofer.de/arpos/dashboard-values?&";
 		if(isChart()) {
@@ -42,7 +42,7 @@ public class Visualization {
 						requestUrl = requestUrl + "&bucket=" + bucket;
 					}
 				}
-				String URL = appUrlBase+"&url="+Utils.encodeUrl(requestUrl)+"&title="+this.title;
+				String URL = appUrlBase+Utils.encodeUrl("url="+Utils.encodeUrl(requestUrl)+"&title="+this.title);
 				this.url = new URL(URL);
 			}
 			//handle bar chart
@@ -54,7 +54,7 @@ public class Visualization {
 						requestUrl = requestUrl + "&bucket=" + bucket;
 					}
 				}
-				String URL = appUrlBase+"&url="+Utils.encodeUrl(requestUrl)+"&title="+this.title;
+				String URL = appUrlBase+Utils.encodeUrl("url="+Utils.encodeUrl(requestUrl)+"&title="+this.title);
 				this.url = new URL(URL);
 			}
 		}
@@ -63,7 +63,7 @@ public class Visualization {
 			appUrlBase = appUrlBase+"textChart.jsp?";
 			requestUrl = requestUrl+"value="+dataset.getParameter();
 			
-			String URL = appUrlBase+"&url="+Utils.encodeUrl(requestUrl)+"&title="+this.title;
+			String URL = appUrlBase+Utils.encodeUrl("url="+Utils.encodeUrl(requestUrl)+"&title="+this.title);
 			this.url = new URL(URL);
 		}
 
@@ -105,7 +105,6 @@ public class Visualization {
 
 	public void setDataset(VisualizationDataset dataset) throws MalformedURLException {
 		this.dataset = dataset;
-		makeUrl();
 	}
 
 	public URL getUrl() {

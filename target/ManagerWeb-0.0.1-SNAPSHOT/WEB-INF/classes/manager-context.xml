@@ -180,8 +180,6 @@
     	<property name="database" ref="database" />
     </bean>
     
-    <bean id="dashboardController" class="de.fraunhofer.iao.muvi.managerweb.web.DashboardController">
-    </bean>
     
     <bean id="sceneController" class="de.fraunhofer.iao.muvi.managerweb.web.SceneController">
     	<property name="database" ref="database" />

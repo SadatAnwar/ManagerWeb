@@ -730,7 +730,7 @@ public class WsmanUtils {
         return document;
 
     }
-    /**
+    /**s
      * Load a XML document from a resource loader
      *
      * @param name The resource name to load
@@ -741,7 +741,7 @@ public class WsmanUtils {
      */
     public Document loadDocument(String name) throws WsmanException {
     	
-    	System.out.println("Try to load resource " + name + " as stream.");
+ 
 
         InputStream stream =
                 intel.management.wsman.resources.ResourceLoader.class.getResourceAsStream(name);

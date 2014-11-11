@@ -55,7 +55,7 @@ $.get(url, function (data2) {
   var last = keys[keys.length-1];
   console.log(data[last].value);
   $( "#value" ).append( data[last].value);
-  $( "#label" ).append( decodeURIComponent(escape("Anzahl aktiver Werkstätten")));
+  $( "#label" ).append( decodeURIComponent(title));
 });
 </script>
 <table>
