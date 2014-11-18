@@ -3,8 +3,7 @@ package de.fraunhofer.iao.muvi.managerweb.domain;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.mysql.jdbc.Util;
-
+import de.fraunhofer.iao.muvi.managerweb.backend.Database;
 import de.fraunhofer.iao.muvi.managerweb.utils.Utils;
 
 public class Visualization {
@@ -17,10 +16,11 @@ public class Visualization {
 	private ScreenID screenID;
 	private URL url;
 	private VisualizationDataset dataset; 
+	private String formatFunction;
 	
-	public Visualization(String id, String dataSet, String category, String title, String type) {
+	public Visualization(String id, String dataSetId, String category, String title, String type) {
 		this.id = id;
-		this.dataSetId = dataSet;
+		this.dataSetId = dataSetId;
 		this.category = category;
 		this.title = title;
 		this.type = type;
@@ -30,8 +30,8 @@ public class Visualization {
 		return this.category.matches("chart");
 	}
 	
-	public void init() throws MalformedURLException {
-		String appUrlBase = "http://137.251.35.100:3636/manager/apps/";
+	public void init(Database database) throws MalformedURLException {
+		String appUrlBase = database.readConfigValue("managerURL")+"apps/";
 		String requestUrl ="https://dashboard.iao.fraunhofer.de/arpos/dashboard-values?&";
 		if(isChart()) {
 			if(this.type.matches("line")) {
@@ -63,8 +63,9 @@ public class Visualization {
 			appUrlBase = appUrlBase+"textChart.jsp?";
 			requestUrl = requestUrl+"value="+dataset.getParameter();
 			
-			String URL = appUrlBase+Utils.encodeUrl("url="+Utils.encodeUrl(requestUrl)+"&title="+this.title);
-			this.url = new URL(URL);
+			String urlString = appUrlBase+Utils.encodeUrl("url="+Utils.encodeUrl(requestUrl)+"&title="+this.title);
+			urlString += Utils.encodeUrl("&formatFunction=" + Utils.encodeUrl(formatFunction));
+			this.url = new URL(urlString);
 		}
 
 	}
@@ -113,6 +114,14 @@ public class Visualization {
 
 	public void setUrl(URL url) {
 		this.url = url;
+	}
+
+	public String getFormatFunction() {
+		return formatFunction;
+	}
+
+	public void setFormatFunction(String formatFunction) {
+		this.formatFunction = formatFunction;
 	}
 	
 }

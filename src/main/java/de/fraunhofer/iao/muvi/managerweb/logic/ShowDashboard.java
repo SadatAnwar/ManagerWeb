@@ -2,6 +2,7 @@ package de.fraunhofer.iao.muvi.managerweb.logic;
 
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,13 +19,17 @@ import org.w3c.dom.NodeList;
 
 import de.fraunhofer.iao.muvi.managerweb.backend.Database;
 import de.fraunhofer.iao.muvi.managerweb.domain.ScreenID;
+import de.fraunhofer.iao.muvi.managerweb.domain.Text;
 import de.fraunhofer.iao.muvi.managerweb.domain.Visualization;
 import de.fraunhofer.iao.muvi.managerweb.domain.VisualizationDataset;
+import de.fraunhofer.iao.muvi.managerweb.utils.Utils;
 
 public class ShowDashboard {
 	private static final Log log = LogFactory.getLog(ShowLargeImage.class);
 	
 	private ShowURLOnScreen showURLOnScreen;
+	private ShowTextOnScreen showTextOnScreen;
+
 	private Database database;
 	
 	/**
@@ -38,11 +43,12 @@ public class ShowDashboard {
 	public Map<ScreenID, URL> getMapForDashboard(URL visml) {
 		Map<ScreenID, URL> map = new HashMap<>();
 		Map<String, Visualization> visualizationMap = new HashMap<>();
-		int n=7;
+
 		// get the XML file from the URL
 		
 		try {
-			URLConnection connection = visml.openConnection();
+			
+	URLConnection connection = visml.openConnection();
 			
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -54,26 +60,62 @@ public class ShowDashboard {
 			NodeList visualizations = doc.getElementsByTagName("visualization");
 			NodeList dataSetNodeList = doc.getElementsByTagName("dataset");
 			
+			/* Add title line */
+			String style = "background-color: rgb(23,156,125); color: white;";
+			
+			NodeList metas = doc.getElementsByTagName("meta");
+			Element meta = (Element) metas.item(0);
+			NodeList titles = meta.getElementsByTagName("title");
+			Element dashboardTitle = (Element) titles.item(0);
+			String titleString = dashboardTitle.getTextContent();
+			
+			log.debug("VisML-Dashboard title is: " + titleString);
+			
+			Date updateDate = new Date();
+			
+			map.put(new ScreenID(1), showTextOnScreen.getURLForText(new Text(titleString, style)));
+			map.put(new ScreenID(2), showTextOnScreen.getURLForText(new Text(" ", style)));
+			map.put(new ScreenID(3), showTextOnScreen.getURLForText(new Text("Last update:", style)));
+			map.put(new ScreenID(4), showTextOnScreen.getURLForText(new Text(Utils.formatDate(updateDate), style)));
+			map.put(new ScreenID(5), showTextOnScreen.getURLForText(new Text(Utils.formatTime(updateDate), style)));
+			map.put(new ScreenID(6), showTextOnScreen.getURLForText(new Text(" ", style)));
+						
 			for (int visNumber = 0; visNumber < visualizations.getLength(); visNumber++) {
 				 
 				Node visNode = visualizations.item(visNumber);
 		 		 
 				if (visNode.getNodeType() == Node.ELEMENT_NODE) {
 		 
-					Element eElement = (Element) visNode;
-					NamedNodeMap attributes= eElement.getAttributes();
+					Element visElement = (Element) visNode;
+					NamedNodeMap attributes= visElement.getAttributes();
 					String id = attributes.getNamedItem("id").getTextContent();
-					String title = eElement.getElementsByTagName("title").item(0).getTextContent();
+					String title = visElement.getElementsByTagName("title").item(0).getTextContent();
 					String category = attributes.getNamedItem("category").getTextContent();
 					String type = attributes.getNamedItem("type").getTextContent();
 					String dataset = attributes.getNamedItem("dataset").getTextContent();
 					Visualization visualization = new Visualization( id,  dataset,  category,  title, type);
-									
+					String formatFunction = "";
+					if (!visualization.isChart()) {
+						/* Look for a Javascript format function */
+						NodeList parameters = visElement.getElementsByTagName("parameter");
+						if (parameters != null && parameters.item(0) != null) {
+							Element parameter = (Element) parameters.item(0);
+							String fFunction = parameter.getTextContent();
+							if (Utils.isNotEmpty(fFunction)) {
+								formatFunction = fFunction;
+							}
+						}
+					}
+					visualization.setFormatFunction(formatFunction);
 					visualizationMap.put(visualization.getDataSetId(), visualization);
 					
 				}
 				
 			}
+			
+			int textCounter=7;
+			int chartCounter=19;
+			
 			for (int datasetnumber = 0; datasetnumber < dataSetNodeList.getLength(); datasetnumber++) {
 				 
 				Node dataSetNode = dataSetNodeList.item(datasetnumber);
@@ -97,9 +139,20 @@ public class ShowDashboard {
 					Visualization visualization = visualizationMap.get(dataset.getId());
 					if(visualization!=null) {
 						visualization.setDataset(dataset);
-						visualization.init();
-						map.put(new ScreenID(n), visualization.getUrl());
-						n++;
+						visualization.init(database);
+						
+						if (visualization.isChart()) {
+							if (chartCounter < 36) {
+								map.put(new ScreenID(chartCounter), visualization.getUrl());
+								chartCounter++;
+							}
+						} else {
+							if (textCounter < 36) {
+								map.put(new ScreenID(textCounter), visualization.getUrl());
+								textCounter++;
+							}
+						}
+
 					}
 					
 		 		}
@@ -114,8 +167,14 @@ public class ShowDashboard {
 	}
 	
 	
-	
-	
+	public ShowTextOnScreen getShowTextOnScreen() {
+		return showTextOnScreen;
+	}
+
+	public void setShowTextOnScreen(ShowTextOnScreen showTextOnScreen) {
+		this.showTextOnScreen = showTextOnScreen;
+	}
+
 	public ShowURLOnScreen getShowURLOnScreen() {
 		return showURLOnScreen;
 	}

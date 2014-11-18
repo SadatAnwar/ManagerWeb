@@ -11,8 +11,10 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -40,6 +42,36 @@ public class Utils {
 	public static final int DEFAULT_WAIT_TIME = 30 * 1000;
 
 	private static final Log log = LogFactory.getLog(Utils.class);
+	
+	/**
+	 * 
+	 * @param date
+	 * @return 2014-11-28 12:32:55
+	 */
+	public static String formatDateTime(Date date) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return format.format(date);
+	}
+	
+	/**
+	 * 
+	 * @param date
+	 * @return 2014-11-28
+	 */
+	public static String formatDate(Date date) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		return format.format(date);
+	}
+	
+	/**
+	 * 
+	 * @param date
+	 * @return 12:32:55
+	 */
+	public static String formatTime(Date date) {
+		SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+		return format.format(date);
+	}
 
 	/**
 	 * Opens a new socket connection to test whether the given port is already

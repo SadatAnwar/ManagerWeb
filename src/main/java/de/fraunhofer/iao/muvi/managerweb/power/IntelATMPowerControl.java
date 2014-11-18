@@ -1,12 +1,12 @@
 package de.fraunhofer.iao.muvi.managerweb.power;
 
-import intel.management.wsman.DefaultAuthenticator;
-import intel.management.wsman.ManagedInstance;
-import intel.management.wsman.ManagedReference;
-import intel.management.wsman.WsmanConnection;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import de.fraunhofer.iao.muvi.intel.management.wsman.DefaultAuthenticator;
+import de.fraunhofer.iao.muvi.intel.management.wsman.ManagedInstance;
+import de.fraunhofer.iao.muvi.intel.management.wsman.ManagedReference;
+import de.fraunhofer.iao.muvi.intel.management.wsman.WsmanConnection;
 
 public class IntelATMPowerControl {
 	

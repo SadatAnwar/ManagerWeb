@@ -131,6 +131,7 @@
     <bean id="showDashboard" class="de.fraunhofer.iao.muvi.managerweb.logic.ShowDashboard">
     	<property name="database" ref="database" />
     	<property name="showURLOnScreen" ref="showURLOnScreen" />
+    	<property name="showTextOnScreen" ref="showTextOnScreen" />
     </bean>
     
     <bean id="showLargeVideo" class="de.fraunhofer.iao.muvi.managerweb.logic.ShowLargeVideo">

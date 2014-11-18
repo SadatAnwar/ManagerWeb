@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="sceneContents">
 <span>The scene contains:</span>
+<c:if test="${scene.visml != null}">
+		VisML dashboard
+</c:if>
 <c:forEach items="${scene.largeimages}" var="largeimage" varStatus="contentCounter">
 	Large image (<a onclick="return confirm('Are you sure?')" href="editscene.do?scenarioId=${scenario.id}&sceneNumber=${loopCounter.count}&action=delete&largeImageNumber=${contentCounter.count}" title="Delete">D</a>, <a href="editscene.do?scenarioId=${scenario.id}&sceneNumber=${loopCounter.count}&action=editScene&largeImageNumber=${contentCounter.count}" title="Edit">E</a>)
 </c:forEach>
