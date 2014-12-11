@@ -7,10 +7,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.apache.commons.logging.Log;
 import de.fraunhofer.iao.muvi.managerweb.domain.AnimatedText;
 import de.fraunhofer.iao.muvi.managerweb.domain.LargeText;
 import de.fraunhofer.iao.muvi.managerweb.domain.Rectangle;
@@ -39,18 +40,20 @@ public class TextController extends MainController {
 	private String paramStartTxtColor;
 	private Screen screen;
 	private int textNumber;
-	
+	private int animatedTextNumber;
+
 	/* required for animated text */
 	private String paramUrl;
-	private String paramSpeed;
-	
+	private int paramSpeed;
+
 	/* For large text */
 	private int paramStartID;
 	private int paramWidth;
 	private int paramHeight;
 	private int largeTextNumber;
-	
+
 	private String paramScreensList;
+	private static final Log log = LogFactory.getLog(TextController.class);
 
 	private boolean createDefaultText(HttpServletRequest request, ModelMap model) {
 
@@ -72,7 +75,7 @@ public class TextController extends MainController {
 		paramStartBgColor = "0,0,0";
 		paramStartTxtColor = "255,255,255";
 		paramUrl = "";
-		paramSpeed = "10000";
+		paramSpeed = 10000;
 		// POST
 		if (isPost(request)) {
 			setAction(request, model);
@@ -92,7 +95,7 @@ public class TextController extends MainController {
 		// no errors
 		return true;
 	}
-	
+
 	private boolean createDefaultLargeText(HttpServletRequest request, ModelMap model) {
 		paramScenarioId = Integer.parseInt(request.getParameter("scenarioId"));
 		paramSceneNumber = Integer
@@ -114,20 +117,20 @@ public class TextController extends MainController {
 			paramStartTxtColor = request.getParameter("txt_color");
 			paramStyle = request.getParameter("style");
 			paramScreensList = request.getParameter("screenSelectorScreenList");
-			
+
 			Rectangle rectangle = ScreenIDCalculator.tryToGetRectangleFromListOfScreenIDs(Utils.convertToScreenIDList(paramScreensList));
-			
+
 			paramStartID = rectangle.getStart().getId();
 			paramWidth = rectangle.getWidth();
 			paramHeight = rectangle.getHeight();
-			
+
 			paramText = request.getParameter("text");
-			
+
 			if (Utils.isEmpty(paramText)) {
 				error("Text can not be empty", model);
 				return false;
 			}
-			
+
 		}
 		// no errors
 		return true;
@@ -138,7 +141,7 @@ public class TextController extends MainController {
 		String editMode= "";
 		if(Utils.isNotEmpty(request.getParameter("editMode"))){
 			editMode = request.getParameter("editMode");
-			}
+		}
 		if(!editMode.contains("edit")){
 			if (createDefaultText(request, model)) {
 				// POST
@@ -152,7 +155,7 @@ public class TextController extends MainController {
 					}
 				}
 			}
-			
+
 		}
 		else {
 			textNumber = Integer.parseInt(request.getParameter("textNumber"));
@@ -171,13 +174,13 @@ public class TextController extends MainController {
 							screen, textNumber);
 				}
 			}
-			
+
 		}
 		setParamsForView(model);
 		model.addAttribute("screenSelectorScreenList", paramScreenID);
 		return "newSimpleText.jsp";
 	}
-	
+
 	@RequestMapping(value = "newLargeText.do")
 	public String newLargeText(HttpServletRequest request, ModelMap model) {
 		if (Utils.isEmpty(request.getParameter("height")) && Utils.isEmpty(request.getParameter("width"))) {
@@ -187,7 +190,7 @@ public class TextController extends MainController {
 		String editMode= "";
 		if(Utils.isNotEmpty(request.getParameter("editMode"))){
 			editMode = request.getParameter("editMode");
-			}
+		}
 		if(!editMode.contains("edit")){
 			if (createDefaultLargeText(request, model)) {
 				// POST
@@ -215,11 +218,11 @@ public class TextController extends MainController {
 					paramScreensList = request.getParameter("screenSelectorScreenList");
 
 					Rectangle rectangle = ScreenIDCalculator.tryToGetRectangleFromListOfScreenIDs(Utils.convertToScreenIDList(paramScreensList));
-					
+
 					paramStartID = rectangle.getStart().getId();
 					paramWidth = rectangle.getWidth();
 					paramHeight = rectangle.getHeight();
-					
+
 					paramText = request.getParameter("text");
 					if (Utils.isEmpty(paramText)) {
 						error("Text can not be empty", model);
@@ -227,20 +230,19 @@ public class TextController extends MainController {
 						model.addAttribute("largeTextNumber", largeTextNumber);
 						setParamsForView(model);
 						return "newLargeText.jsp";
-								
+
 					}
 					LargeText largeText = new LargeText(paramText, paramStyle, new ScreenID(paramStartID), paramWidth, paramHeight);
 					paramXml = Utils.getXml(largeText);
 					return editLargeTextAndSave(paramScenarioId, paramSceneNumber,largeText, largeTextNumber);
-
 				}
-				
 			}
 		}
 		return "newLargeText.jsp";
-		
-		
+
+
 	}
+
 	private void editTextPageHelper(HttpServletRequest request, ModelMap model) {
 		paramScenarioId = Integer.parseInt(request.getParameter("scenarioId"));
 		paramSceneNumber = Integer.parseInt(request.getParameter("sceneNumber"));
@@ -249,19 +251,22 @@ public class TextController extends MainController {
 		if(Utils.isNotEmpty(request.getParameter("largeTextNumber"))){
 			largeTextNumber = Integer.parseInt(request.getParameter("largeTextNumber"));
 			largeTextHelper(scene, request, model);
-			}
+		}
 		else if (Utils.isNotEmpty(request.getParameter("textNumber"))) {
 			textNumber = Integer.parseInt(request.getParameter("textNumber"));
 			textHelper(scene, request, model);
 		}
+		else if (Utils.isNotEmpty(request.getParameter("animatedTextNumber"))) {
+			animatedTextNumber = Integer.parseInt(request.getParameter("animatedTextNumber"));
+			animatedTextHelper(scene, request, model);
+		}
 		else{
-			error("Large Image number not found", model);
+			error("text number not found", model);
 			throw new IllegalArgumentException("Large Image number not found");
 		}
-		
+
 	}
-	
-	
+
 	private void textHelper(Scene scene, HttpServletRequest request, ModelMap model){
 		Screen screen = scene.getScreens().get(textNumber);
 		paramXml = Utils.getXml(screen);
@@ -276,14 +281,38 @@ public class TextController extends MainController {
 		setScreensUsed(paramScenarioId, paramSceneNumber, model);
 		setAction(request, model);		
 	}
-	
+
+
+	private void animatedTextHelper(Scene scene, HttpServletRequest request, ModelMap model){
+		screen = scene.getScreens().get(animatedTextNumber);
+		paramXml = Utils.getXml(screen);
+		if(Utils.isNotEmpty(request.getParameter("screenSelectorScreenList"))){
+			paramScreensList = request.getParameter("screenSelectorScreenList");
+			paramStartID = Utils.convertToScreenIDList(paramScreensList).get(0).getId();
+		} else {
+			paramStartID = screen.getId().getId();
+		}
+		paramScreenID = paramStartID;
+		model.addAttribute("screenSelectorScreenList", paramStartID);
+		paramText = screen.getAnimatedText().getText().getText();
+		paramStyle = screen.getAnimatedText().getText().getStyle();
+		paramUrl = screen.getAnimatedText().getImage().getUrl().toString();
+		paramSpeed = screen.getAnimatedText().getSpeed();
+		String delims = "[()]+";
+		String[] tokens = paramStyle.split(delims);
+		paramStartBgColor = tokens[1];
+		paramStartTxtColor = tokens[3];
+		setScreensUsed(paramScenarioId, paramSceneNumber, model);
+		setAction(request, model);		
+	}
+
 	private void largeTextHelper(Scene scene, HttpServletRequest request, ModelMap model){
 		LargeText largeText = scene.getLargetexts().get(largeTextNumber);
 		paramXml = Utils.getXml(largeText);
 		paramStartID = largeText.getDisplayarea().getRectangle().getStart().getId();
 		paramWidth = largeText.getDisplayarea().getRectangle().getWidth();
 		paramHeight = largeText.getDisplayarea().getRectangle().getHeight();
-		
+
 		List<ScreenID> list = ScreenIDCalculator.getScreenIDList(new Rectangle(new ScreenID(paramStartID), paramHeight, paramWidth));
 		model.addAttribute("screenSelectorScreenList", Utils.convertToString(list));
 		paramText = largeText.getText();
@@ -309,7 +338,7 @@ public class TextController extends MainController {
 		database.saveOrUpdateScenario(scenario);
 		return "showScenario.do?id=" + scenario.getId();
 	}
-	
+
 	private String editLargeTextAndSave(int scenarioId,int sceneNumber, LargeText largeText, int textIndex) {
 		Scenario scenario = database.getScenario(scenarioId);
 		Scene scene = scenario.getScenes().get(sceneNumber - 1);
@@ -323,30 +352,87 @@ public class TextController extends MainController {
 
 	@RequestMapping(value = "newAnimatedText.do")
 	public String newAnimatedText(HttpServletRequest request, ModelMap model) {
-		if (createDefaultText(request, model)) {
-			// POST
-			if (isPost(request)) {
-				if (Utils.isNotEmpty(request.getParameter("speed"))) {
-					paramSpeed = request.getParameter("speed");
-				}
-				if (Utils.isNotEmpty(request.getParameter("imageUrl"))) {
-					paramUrl = request.getParameter("imageUrl");
-				}
-				URL imageURL = null;
-				try {
-					imageURL = new URL(paramUrl);
-					AnimatedText animatedText = new AnimatedText(paramText,
-							paramStyle, imageURL, new Integer(paramSpeed));
-					screen.setAnimatedText(animatedText);
-					paramXml = Utils.getXml(screen);
-					if (ACTION_SAVE.equals(action)) {
-						return addScreenAndSave(paramScenarioId,
-								paramSceneNumber, screen);
+		//Check if edit 
+		String editMode= "";
+		if(Utils.isNotEmpty(request.getParameter("editMode"))){
+			editMode = request.getParameter("editMode");
+		}
+		if(!editMode.contains("edit")){
+			if (createDefaultText(request, model)) {
+				// POST
+				if (isPost(request)) {
+					if (Utils.isNotEmpty(request.getParameter("speed"))) {
+						paramSpeed = Integer.parseInt(request.getParameter("speed"));
 					}
-				} catch (MalformedURLException e) {
-					error("Url is not valid", model);
+					if (Utils.isNotEmpty(request.getParameter("imageUrl"))) {
+						paramUrl = request.getParameter("imageUrl");
+					}
+					URL imageURL = null;
+					try {
+						imageURL = new URL(paramUrl);
+						AnimatedText animatedText = new AnimatedText(paramText,
+								paramStyle, imageURL, new Integer(paramSpeed));
+						screen.setAnimatedText(animatedText);
+						paramXml = Utils.getXml(screen);
+						if (ACTION_SAVE.equals(action)) {
+							return addScreenAndSave(paramScenarioId,
+									paramSceneNumber, screen);
+						}
+					} catch (MalformedURLException e) {
+						error("Url is not valid", model);
+					}
 				}
 			}
+		}
+		//Edit-- populate page according to preset values
+		else {
+			animatedTextNumber = Integer.parseInt(request.getParameter("animatedTextNumber"));
+			editTextPageHelper(request, model);
+			if (isPost(request)) {
+				if (ACTION_SAVE.equals(action)) {
+					try {
+						if (Utils.isNotEmpty(request.getParameter("speed"))) {
+							paramSpeed = Integer.parseInt(request.getParameter("speed"));
+						} else {
+							throw new Exception ("Speed cannot be blank");
+						}
+						if (Utils.isNotEmpty(request.getParameter("text"))) {
+							paramText = request.getParameter("text");
+						} else {
+							throw new Exception ("Text cannot be blank");
+						}
+						if (Utils.isNotEmpty(request.getParameter("style"))) {
+							paramStyle = request.getParameter("style");
+						}
+						if (Utils.isNotEmpty(request.getParameter("imageUrl"))) {
+							paramUrl = request.getParameter("imageUrl");
+						}
+						URL imageURL = null;
+						imageURL = new URL(paramUrl);
+						
+						AnimatedText animatedText = new AnimatedText(paramText,
+								paramStyle, imageURL, new Integer(paramSpeed));
+						screen.setAnimatedText(animatedText);
+						screen.setId(new ScreenID(paramStartID));
+						paramXml = Utils.getXml(screen);
+						if (ACTION_SAVE.equals(action)) {
+							return editScreenAndSave(paramScenarioId,
+									paramSceneNumber, screen, animatedTextNumber);
+						}
+					} catch (MalformedURLException e) {
+						model.addAttribute("editMode", editMode);
+						model.addAttribute("animatedTextNumber", animatedTextNumber);
+						error("Url is not valid", model);
+					} catch (Exception e) {
+						model.addAttribute("editMode", editMode);
+						model.addAttribute("animatedTextNumber", animatedTextNumber);
+						error(e.getMessage(), model);
+						log.error(e);
+						
+					}
+				}
+			}
+
 		}
 		setParamsForView(model);
 		model.addAttribute("screenSelectorScreenList", paramScreenID);
@@ -366,12 +452,12 @@ public class TextController extends MainController {
 		model.addAttribute("paramStartTxtColor", paramStartTxtColor);
 		model.addAttribute("paramSpeed", paramSpeed);
 		model.addAttribute("paramUrl", paramUrl);
-		
+
 		/* For large text */
 		model.addAttribute("paramStartID", paramStartID);
 		model.addAttribute("paramWidth", paramWidth);
 		model.addAttribute("paramHeight", paramHeight);
-				
+
 	}
 
 }

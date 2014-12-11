@@ -40,7 +40,7 @@
 				<c:choose>
 					<c:when test="${sessionScope.mode == 'edit'}">
 						<a class="playScenarioLink" href="showScenario.do?id=${scenario.id}">${scenario.name}</a><br> 
-						<a href="playScenario.do?id=${scenario.id}">Open</a>
+						<a href="playScenario.do?id=${scenario.id}">Show</a>
 						<a href="xml.do?scenarioId=${scenario.id}">XML</a>
 						<a href ="javascript:deleteScenario(${scenario.id})">Delete</a>
 						<form id="deleteScenario${scenario.id}" action="scenarios.do" method="post">

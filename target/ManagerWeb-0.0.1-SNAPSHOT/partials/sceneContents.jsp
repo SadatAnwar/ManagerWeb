@@ -18,6 +18,9 @@
 <c:forEach items="${scene.largeURLs}" var="largeURL" varStatus="contentCounter">
 	Large URL (<a onclick="return confirm('Are you sure?')" href="editscene.do?scenarioId=${scenario.id}&sceneNumber=${loopCounter.count}&action=delete&largeURLNumber=${contentCounter.count}" title="Delete">D</a>, <a href="editscene.do?scenarioId=${scenario.id}&sceneNumber=${loopCounter.count}&action=editScene&largeURLNumber=${contentCounter.count}" title="Edit">E</a>)
 </c:forEach>
+<c:if test="${scene.visml !=null}" var="visml">
+	VisML Dashboard(<a onclick="return confirm('Are you sure?')" href="editscene.do?scenarioId=${scenario.id}&sceneNumber=${loopCounter.count}&action=delete&visml=${contentCounter.count}" title="Delete">D</a>, <a href="editscene.do?scenarioId=${scenario.id}&sceneNumber=${loopCounter.count}&action=editScene&visml=${contentCounter.count}" title="Edit">E</a>)
+</c:if>
 <c:forEach items="${scene.screens}" var="screen" varStatus="contentCounter">
 	<c:if test="${screen.text != null}">
 		Text

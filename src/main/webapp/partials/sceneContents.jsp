@@ -3,9 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="sceneContents">
 <span>The scene contains:</span>
-<c:if test="${scene.visml != null}">
-		VisML dashboard
-</c:if>
 <c:forEach items="${scene.largeimages}" var="largeimage" varStatus="contentCounter">
 	Large image (<a onclick="return confirm('Are you sure?')" href="editscene.do?scenarioId=${scenario.id}&sceneNumber=${loopCounter.count}&action=delete&largeImageNumber=${contentCounter.count}" title="Delete">D</a>, <a href="editscene.do?scenarioId=${scenario.id}&sceneNumber=${loopCounter.count}&action=editScene&largeImageNumber=${contentCounter.count}" title="Edit">E</a>)
 </c:forEach>
@@ -21,6 +18,9 @@
 <c:forEach items="${scene.largeURLs}" var="largeURL" varStatus="contentCounter">
 	Large URL (<a onclick="return confirm('Are you sure?')" href="editscene.do?scenarioId=${scenario.id}&sceneNumber=${loopCounter.count}&action=delete&largeURLNumber=${contentCounter.count}" title="Delete">D</a>, <a href="editscene.do?scenarioId=${scenario.id}&sceneNumber=${loopCounter.count}&action=editScene&largeURLNumber=${contentCounter.count}" title="Edit">E</a>)
 </c:forEach>
+<c:if test="${scene.visml !=null}" var="visml">
+	VisML Dashboard(<a onclick="return confirm('Are you sure?')" href="editscene.do?scenarioId=${scenario.id}&sceneNumber=${loopCounter.count}&action=delete&visml=${contentCounter.count}" title="Delete">D</a>, <a href="editscene.do?scenarioId=${scenario.id}&sceneNumber=${loopCounter.count}&action=editScene&visml=${contentCounter.count}" title="Edit">E</a>)
+</c:if>
 <c:forEach items="${scene.screens}" var="screen" varStatus="contentCounter">
 	<c:if test="${screen.text != null}">
 		Text

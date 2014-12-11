@@ -131,6 +131,7 @@
     <bean id="showDashboard" class="de.fraunhofer.iao.muvi.managerweb.logic.ShowDashboard">
     	<property name="database" ref="database" />
     	<property name="showURLOnScreen" ref="showURLOnScreen" />
+    	<property name="showTextOnScreen" ref="showTextOnScreen" />
     </bean>
     
     <bean id="showLargeVideo" class="de.fraunhofer.iao.muvi.managerweb.logic.ShowLargeVideo">
@@ -199,7 +200,12 @@
     <bean id="textController" class="de.fraunhofer.iao.muvi.managerweb.web.TextController">
     	<property name="database" ref="database" />
     	<property name="showMuVi" ref="showMuVi" />
-    </bean>    
+    </bean> 
+    
+    <bean id="dashboardController" class="de.fraunhofer.iao.muvi.managerweb.web.DashboardController">
+    	<property name="database" ref="database" />
+    	<property name="showMuVi" ref="showMuVi" />
+    </bean>   
  
     <bean id="searchResultsController" class="de.fraunhofer.iao.muvi.managerweb.web.SearchResultsController">
     	<property name="database" ref="database" />

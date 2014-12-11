@@ -1,5 +1,3 @@
-
-
 function powerOn(outletNumber) {
 	var conf = true;
 	if (outletNumber == 7) {
@@ -266,11 +264,13 @@ function allSysPowerOn() {
 				  var json = $.parseJSON(data);
 				  if(json.DC1){
                       $('#dc1').removeClass('stateOff');
+                      $('#powerComputer').removeClass('btn-danger');
                       $('#powerComputer').addClass('btn-warning');
                       dCState.DC1 = true;
 			     }
                   if(json.DC2){
-                      $('#dc2').removeClass('stateOff');         
+                      $('#dc2').removeClass('stateOff');    
+                      $('#powerComputer').removeClass('btn-danger');
                       $('#powerComputer').addClass('btn-warning');
                       dCState.DC2 = true;
                   }
@@ -281,6 +281,7 @@ function allSysPowerOn() {
                   }
                   if(json.DC4) {
                       $('#dc4').removeClass('stateOff');
+                      $('#powerComputer').removeClass('btn-danger');
                       $('#powerComputer').addClass('btn-warning');
                       dCState.DC4 = true;
                   }
@@ -442,30 +443,20 @@ function checkdc(){
         dataType: "text",
         success: function(data) {
             var json = $.parseJSON(data);
-             if(json.DC1.match("On")){
-				  $('#dc1').removeClass('stateOff');  
-				  $('#powerComputer').removeClass('btn-danger');
-				  $('#powerComputer').addClass('btn-warning');
-				  dCState.DC1 = true;
-			  }
-			  if(json.DC2.match("On")){
-				  $('#dc2').removeClass('stateOff');
-				  $('#powerComputer').removeClass('btn-danger');
-				  $('#powerComputer').addClass('btn-warning');
-				  dCState.DC2 = true;
-			  }
-			  if(json.DC3.match("On")){
-				  $('#dc3').removeClass('stateOff');
-				  $('#powerComputer').removeClass('btn-danger');
-				  $('#powerComputer').addClass('btn-warning');
-				  dCState.DC3 = true;
-			  }
-			  if(json.DC4.match("On")){
-				  $('#dc4').removeClass('stateOff');
-				  $('#powerComputer').removeClass('btn-danger');
-				  $('#powerComputer').addClass('btn-warning');
-				  dCState.DC4 = true;
-			  }
+            for(var i=1; i<=4; i++) {
+            	var DC = "DC"+i;
+            	var dc = "dc"+i;
+            	var jsonData = json[DC];
+            	if(jsonData.match("On")){
+  				  $('#'+dc).removeClass('stateOff');  
+  				  $('#powerComputer').removeClass('btn-danger');
+  				  $('#powerComputer').addClass('btn-warning');
+  				  dCState[DC] = true;
+  			  } else if(jsonData.match("ConnectionLost")) {
+  				  $('#'+dc).removeClass('stateOff');
+  				  $('#'+dc).addClass('stateDisconnected');  
+  			  }
+            }
 			  if(dCState.DC1 && dCState.DC2 && dCState.DC3 && dCState.DC4){
                   $('#powerComputer').addClass('btn-success');
 				  $('#powerComputer').removeClass('btn-danger');
@@ -484,7 +475,6 @@ function checkDcPowerOnStatus(){
         type: "POST",
         url: "checkDcPower.do",
         dataType: "text",
-        timeout: 3000,
         success: function(data) {
             var json = $.parseJSON(data);
              if(json.DC1.match("On") || json.DC2.match("On") || json.DC3.match("On") || json.DC4.match("On")) {
@@ -493,11 +483,7 @@ function checkDcPowerOnStatus(){
                   allSysPowerOn();
               }
 			  },
-	       error: function(x, t, m) {
-               if(t==="timeout"){
-                   alert("The system timed out, some of the DC computers are not responding")
-
-               }
+	       error: function() {
 			  }
 		});
 }

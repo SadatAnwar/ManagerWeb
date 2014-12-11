@@ -9,7 +9,7 @@
 <title>Scenario player - MuVi Manager</title>
 <script type="text/javascript" src="js/jquery-1.11.0.js"></script>
 <script type="text/javascript">
-
+var loop = false;
 function showScene(scenarioId, sceneNumber) {
 	$('#message').html("Asking MuVi to show scene " + sceneNumber + " fron scenario " + scenarioId + "...");
 	$.ajax({
@@ -47,8 +47,14 @@ var nextScene, timer;
 var currentScene;
 
 function checkShowScenario(scenarioId, maxScene, sceneId) {
+	if(confirm('Do you want to loop the scenario?')){
+		loop = true;
+	} else {
+		loop = false;
+	}
 	if(confirm('Proceed with showing complete scenario?')){
 		showScenario(scenarioId, maxScene, sceneId);
+		
 	}
 }
 
@@ -91,7 +97,9 @@ function showScenario(scenarioId, maxScene, sceneId) {
 	}
 	
 	else{
+		currentScene = 0;
 		document.getElementById("senarioPlayer").style.display = "none";
+		loop = false;
 		alert("Show scenario complete!");
 	}
 }
@@ -115,6 +123,11 @@ function cencel(){
 function next(scenarioId, maxScene){
 	clearTimeout(nextScene);
 	clearTimeout(timer);
+	if(loop){
+		if((currentScene+1)==maxScene){
+			currentScene = 0;
+		}
+	}
 	showScenario(scenarioId, maxScene, currentScene+1);
 }
 
@@ -125,6 +138,7 @@ function previous(scenarioId, maxScene){
 	else{
 		clearTimeout(nextScene);
 		clearTimeout(timer);
+		
 		showScenario(scenarioId, maxScene, currentScene-1);
 	}
 }

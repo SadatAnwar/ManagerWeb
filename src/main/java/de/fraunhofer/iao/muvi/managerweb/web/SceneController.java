@@ -3,6 +3,7 @@
  */
 package de.fraunhofer.iao.muvi.managerweb.web;
 
+import java.net.URL;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -90,6 +91,13 @@ public class SceneController extends MainController {
 						+ " from scene " + sceneNumber + " from scenario "
 						+ scenarioId);
 			} 
+			
+			else if (request.getParameter("visml") != null) {
+				scene.setVisml(null);
+				database.saveOrUpdateScenario(scenario);
+				log.info("Deleted VisML URL from scene " + sceneNumber + " from scenario "
+						+ scenarioId);
+			}
 		}
 			
 		if ("deleteScene".equals(request.getParameter("action"))) {
@@ -141,6 +149,11 @@ public class SceneController extends MainController {
 				model.addAttribute("editMode", "edit");
 				return "newSimpleText.do?scenarioId="+scenarioId+"&sceneNumber="+sceneNumber+"&editMode=edit&textNumber="+(screenNumber-1);
 			}
+			if(screen.getAnimatedText()!=null){
+				model.addAttribute("animatedTextNumber", screenNumber-1);
+				model.addAttribute("editMode", "edit");
+				return "newAnimatedText.do?scenarioId="+scenarioId+"&sceneNumber="+sceneNumber+"&editMode=edit&animatedTextNumber="+(screenNumber-1);
+			}
 		} else if (request.getParameter("searchresultsNumber") != null) {
 			int searchresultsNumber = Integer.parseInt(request
 					.getParameter("searchresultsNumber"));
@@ -170,8 +183,11 @@ public class SceneController extends MainController {
 			model.addAttribute("largeURLNumber", largeURLNumber-1);
 			model.addAttribute("editMode", "edit");
 			return "newLargeURL.do?scenarioId="+scenarioId+"&sceneNumber="+sceneNumber+"&editMode=edit&largeURLNumber="+(largeURLNumber-1);
-		
-			
+		} else if (request.getParameter("visml") != null) {
+			URL visml = scene.getVisml();
+			model.addAttribute("vismlUrl", visml.toString());
+			model.addAttribute("editMode", "edit");
+			return "newVISMLDashboard.do?scenarioId="+scenarioId+"&sceneNumber="+sceneNumber+"&editMode=edit";
 		}
 		return "";
 		

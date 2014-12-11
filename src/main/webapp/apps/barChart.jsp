@@ -5,6 +5,7 @@
 body {
   font-size: 2em;
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  background-color: #efefef;
 }
 .bar {
   fill: #009474;

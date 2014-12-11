@@ -277,6 +277,10 @@ span.message {
 	color: rgb(74, 79, 81);
 	}
 	
+.stateDisconnected {
+	color: #D9534F;
+	}
+	
 td a {
 	width:100%;
 	display:block;

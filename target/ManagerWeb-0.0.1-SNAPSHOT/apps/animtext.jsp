@@ -83,6 +83,7 @@ body {
 
 </style>
 </head>
+
 <body>
 
 <div id="container">
@@ -91,6 +92,11 @@ body {
 </div></div>
 <div id="d2"><img src="<%=request.getParameter("img") %>" width="100%" height="100%"></div>
 </div>
+
+<script type="text/javascript" src="
+<% if(request.getParameter("christmasMode") != null){%>
+	<%="../js/snowstorm.js"%>
+<%} %>"></script>
 
 </body>
 </html>

@@ -20,7 +20,7 @@ body {
 	display: table-cell;
 	text-align:center;
 	vertical-align: middle;
-	font-size: 20em;
+/*	font-size: 20em;*/
 	font-family: "Frutiger", Verdana;
 }
 </style>
@@ -32,32 +32,43 @@ body {
 </div>
 </div>
 <script type="text/javascript">
+    
+var style = "<%=request.getParameter("style")%>";
 
-var cont = document.getElementById("container");
-var text = document.getElementById("text");
+    if(!(style.indexOf("font-size")>-1)){
+        var cont = document.getElementById("container");
+        var text = document.getElementById("text");
 
-var millisecondsToWait = 1;
+        text.style.fontSize = "20em";
+        
+        
+        var millisecondsToWait = 1; 
 
-setTimeout(function() {
-	if (text.clientHeight > window.innerHeight || text.clientWidth > window.innerWidth) {
-		text.style.fontSize = "15em";
-	}
-	setTimeout(function() {
-		if (text.clientHeight > window.innerHeight || text.clientWidth > window.innerWidth) {
-			text.style.fontSize = "10em";
-		}
-		setTimeout(function() {
-			if (text.clientHeight > window.innerHeight || text.clientWidth > window.innerWidth) {
-				text.style.fontSize = "5em";
-			}
-			setTimeout(function() {
-				if (text.clientHeight > window.innerHeight || text.clientWidth > window.innerWidth) {
-					text.style.fontSize = "1em";
-				}
-			}, millisecondsToWait);
-		}, millisecondsToWait);
-	}, millisecondsToWait);
-}, millisecondsToWait);
+        setTimeout(function() {
+            if (text.clientHeight > window.innerHeight || text.clientWidth > window.innerWidth) {
+                text.style.fontSize = "15em";
+            }
+            setTimeout(function() {
+                if (text.clientHeight > window.innerHeight || text.clientWidth > window.innerWidth) {
+                    text.style.fontSize = "10em";
+                }
+                setTimeout(function() {
+                    if (text.clientHeight > window.innerHeight || text.clientWidth > window.innerWidth) {
+                        text.style.fontSize = "5em";
+                    }
+                    setTimeout(function() {
+                        if (text.clientHeight > window.innerHeight || text.clientWidth > window.innerWidth) {
+                            text.style.fontSize = "1em";
+                        }
+                    }, millisecondsToWait);
+                }, millisecondsToWait);
+            }, millisecondsToWait);
+        }, millisecondsToWait);
+    } else {
+        var text = document.getElementById("text");
+        text.style.fontSize = "1em";
+    }
+
 
 </script>
 </body>

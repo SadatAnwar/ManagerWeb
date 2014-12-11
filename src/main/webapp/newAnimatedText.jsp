@@ -17,6 +17,8 @@
 	<form action="newAnimatedText.do" method="post" id="xmlEditor">
 		<input type="hidden" name="scenarioId" value="${paramScenarioId}">
 		<input type="hidden" name="sceneNumber" value="${paramSceneNumber}">
+		<input type="hidden" name="editMode" id="editMode" value="${editMode}">
+		<input type="hidden" name="animatedTextNumber" id="animatedTextNumber" value="${animatedTextNumber}">
 		<table>
 			<tr>
 				<td>

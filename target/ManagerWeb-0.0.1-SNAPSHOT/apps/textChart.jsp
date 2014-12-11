@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 
 <html>
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <style>
 
 	html, body {
@@ -46,16 +46,74 @@
 <script src="../js/d3.min.js"></script>
 <script type="text/javascript" src="../js/jquery-1.11.0.js"></script>
 <script type="text/javascript">
+(function() {
+function dateTime(timestamp) {
+	var date = new Date(timestamp);
+	var formatted = "";
+
+	if (date.getDate() < 10)
+		formatted += "0";
+	formatted += date.getDate() + ".";
+
+	if ((1 + date.getMonth()) < 10)
+		formatted += "0";
+	formatted += (1 + date.getMonth()) + ".";
+
+	formatted += date.getFullYear() + " ";
+
+	if (date.getHours() < 10)
+		formatted += "0";
+	formatted += date.getHours() + ":";
+
+	if (date.getMinutes() < 10)
+		formatted += "0";
+
+	formatted += date.getMinutes() + ":";
+
+	if (date.getSeconds() < 10)
+		formatted += "0";
+
+	formatted += date.getSeconds();
+
+	return formatted;
+}
+
+function formatGermanCurrency(amount) {
+	var result;
+	if (!isNaN(parseFloat(amount))) {
+		result = parseFloat(amount).toFixed(2)+ '&nbsp;EUR';
+		result = result.replace('.',',');
+		if (result.length > 15) {
+			/* Separate thousands */
+			var end = result.substring(result.length - 12, result.length);
+			var start = result.substring(0, result.length -12);
+			result = start.substring(0,start.length - 3) + "&nbsp;" + start.substring(start.length -3, start.length) + end;
+		}
+	} else {
+		result = "?&nbsp;EUR";
+	}
+	return result;
+}
+
+window['DashboardUtils'] = {};
+window['DashboardUtils']['dateTime'] = dateTime;
+window['DashboardUtils']['formatGermanCurrency'] = formatGermanCurrency;
+})();
+
 	var url = "<%=request.getParameter("url")%>";
 	var title = "<%=request.getParameter("title")%>";
+	
+	$( document ).ready(function() {
+		$( "#label" ).append( decodeURIComponent(title));
+	});	 
+
 	
 $.get(url, function (data2) {
   data = data2;
   var keys = Object.keys(data);
   var last = keys[keys.length-1];
   console.log(data[last].value);
-  $( "#value" ).append( data[last].value);
-  $( "#label" ).append( decodeURIComponent(title));
+  $( "#value" ).append( formatResult(data[last].value));
 });
 </script>
 <table>
@@ -66,5 +124,12 @@ $.get(url, function (data2) {
 		<td id="value"></td>
 	</tr>
 </table>
+<script type="text/javascript">
+function formatResult(input) {
+	var output = input;
+	<%=request.getParameter("formatFunction")%>
+	return output;
+}
+</script>
 </body>
 </html>

@@ -132,7 +132,7 @@ public class Database {
     }
     
     public List<Scenario> getScenarios() {
-    	List<Scenario> scenarios = jdbcTemplate.query("select * from scenarios order by date desc",
+    	List<Scenario> scenarios = jdbcTemplate.query("select * from scenarios where id>1 order by date desc",
                 new ScenarioRowMapper());
     	return scenarios;
     }
@@ -141,7 +141,7 @@ public class Database {
     	if (Utils.isEmpty(tag)) {
     		return getScenarios();
     	} else {
-	    	List<Scenario> scenarios = jdbcTemplate.query("select * from scenarios where tags like ? order by date desc",
+	    	List<Scenario> scenarios = jdbcTemplate.query("select * from scenarios where id>1 and tags like ? order by date desc",
 	                new ScenarioRowMapper(), "%" + tag + "%");
 	    	return scenarios;
     	}

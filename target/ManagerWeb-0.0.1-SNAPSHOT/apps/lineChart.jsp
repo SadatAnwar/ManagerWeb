@@ -3,8 +3,9 @@
 <style>
 			/* tell the SVG path to be a thin blue line without any area fill */
 			body {
-			  font-size: 1em;
+			  font-size: 25px;
 			  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+                background-color: #efefef;    
 			}
 			path {
 				stroke:  #009474;
@@ -13,6 +14,8 @@
 			}
 			
 			.axis {
+                font-style: oblique;
+                font-size: 20px;
 			  shape-rendering: crispEdges;
 			}
 
@@ -54,9 +57,9 @@
 		/* implementation heavily influenced by http://bl.ocks.org/1166403 */
 		
 		// define dimensions of graph
-		var m = [80, 80, 80, 80]; // margins
+		var m = [100, 80, 230, 80]; // margins
 		var w = 1700 - m[1] - m[3]; // width
-		var h = 950 - m[0] - m[2]; // height
+		var h = 980 - m[0] - m[2]; // height
 		
 		// create a simple data array that we'll plot with a line (this array represents only the Y values, X will just be the index location)
 		var data = jsondata;
@@ -120,10 +123,10 @@
 			      .call(xAxis)
 			      .selectAll("text")  
 		            .style("text-anchor", "end")
-		            .attr("dx", "-.8em")
-		            .attr("dy", ".15em")
+		            .attr("dx", "0.2em")
+		            .attr("dy", "1.15em")
 		            .attr("transform", function(d) {
-		                return "rotate(-65)" 
+		                return "rotate(-60)" 
                 });
 
 

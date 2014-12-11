@@ -744,10 +744,7 @@ public class WsmanUtils {
  
 
         InputStream stream =
-                de.fraunhofer.iao.muvi.intel.management.wsman.resources.ResourceLoader.class.getResourceAsStream("/" + name);
-                
-        log.debug("Stream is " + stream);
-        
+                de.fraunhofer.iao.muvi.intel.management.wsman.resources.ResourceLoader.class.getResourceAsStream("/" + name);        
         return loadDocument(stream);
       
     }

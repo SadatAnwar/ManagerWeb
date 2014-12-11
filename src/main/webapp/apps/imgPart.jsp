@@ -129,6 +129,10 @@ body {
 	height: <%=heightP%>%;
 }
 </style>
+<script type="text/javascript" src="
+<% if(request.getParameter("christmasMode") != null){%>
+	<%="../js/snowstorm.js"%>
+<%} %>"></script>
 </head>
 <body>
 	<div id="container">

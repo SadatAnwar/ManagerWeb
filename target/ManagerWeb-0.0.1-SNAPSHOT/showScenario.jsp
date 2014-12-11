@@ -154,6 +154,8 @@
 				<a href="newImage.do?scenarioId=${scenario.id }&amp;sceneNumber=${loopCounter.count }">+ image</a>
 				<a href="newSimpleURL.do?scenarioId=${scenario.id }&amp;sceneNumber=${loopCounter.count }">+ URL</a>
 				<a href="newSimpleText.do?scenarioId=${scenario.id }&amp;sceneNumber=${loopCounter.count }">+ text</a>
+				<br>
+				<a href="newVISMLDashboard.do?scenarioId=${scenario.id }&amp;sceneNumber=${loopCounter.count }">+ VisML</a>
 			</li>
 			
 			<p>&nbsp;</p>

@@ -78,8 +78,26 @@ function dateTime(timestamp) {
 	return formatted;
 }
 
+function formatGermanCurrency(amount) {
+	var result;
+	if (!isNaN(parseFloat(amount))) {
+		result = parseFloat(amount).toFixed(2)+ '&nbsp;EUR';
+		result = result.replace('.',',');
+		if (result.length > 15) {
+			/* Separate thousands */
+			var end = result.substring(result.length - 12, result.length);
+			var start = result.substring(0, result.length -12);
+			result = start.substring(0,start.length - 3) + "&nbsp;" + start.substring(start.length -3, start.length) + end;
+		}
+	} else {
+		result = "?&nbsp;EUR";
+	}
+	return result;
+}
+
 window['DashboardUtils'] = {};
 window['DashboardUtils']['dateTime'] = dateTime;
+window['DashboardUtils']['formatGermanCurrency'] = formatGermanCurrency;
 })();
 
 	var url = "<%=request.getParameter("url")%>";
